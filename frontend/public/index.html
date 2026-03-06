@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shukhi Life – Ginko Biloba ব্রেইনের ফুড সাপ্লিমেন্ট</title>
+
+  <!-- Meta Pixel Base Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1917170572338907');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1917170572338907&ev=PageView&noscript=1"/></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #1a7a3c;
+      --green-dark: #125a2b;
+      --green-light: #e8f5ee;
+      --green-mid: #2d9e52;
+      --green-xlight: #f0faf4;
+      --accent: #f0a500;
+      --accent-light: #fff8e1;
+      --text: #1a1a1a;
+      --text-soft: #5a6872;
+      --bg: #f7fbf8;
+      --white: #ffffff;
+      --border: #d4edd9;
+      --red: #e53935;
+      --shadow-sm: 0 2px 8px rgba(26,122,60,0.08);
+      --shadow: 0 6px 28px rgba(26,122,60,0.13);
+      --shadow-lg: 0 12px 48px rgba(26,122,60,0.18);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(26,122,60,0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(26,122,60,0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .fade-up-delay { animation: fadeUp 0.6s ease 0.2s both; }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+    .logo {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 22px;
+      color: var(--green);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .header-phone {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .header-cta {
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 3px 12px rgba(26,122,60,0.28);
+    }
+    .header-cta:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 5px 18px rgba(26,122,60,0.36); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(150deg, #f0faf4 0%, #e4f5eb 60%, #d6f0e0 100%);
+      padding: 60px 24px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(45,158,82,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(240,165,0,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+    }
+    .hero-badge-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: white;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+    }
+    .hero h1 {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 30px;
+      line-height: 1.45;
+      color: var(--green-dark);
+      margin-bottom: 16px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+      background: linear-gradient(90deg, var(--green), var(--green-mid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      color: var(--text-soft);
+      font-size: 15px;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .hero-sub strong { color: #c0392b; font-weight: 700; }
+    .hero-cta-wrap { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      color: white;
+      padding: 15px 32px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(26,122,60,0.35);
+      animation: pulse 2.5s infinite;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,122,60,0.45); }
+    .hero-mini-trust { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-mini-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+    .hero-mini-item svg { color: var(--green); }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--green-mid), var(--accent));
+      z-index: -1;
+    }
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--green-dark);
+      padding: 0;
+    }
+    .stats-bar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 22px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.2s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(255,255,255,0.05); }
+    .stat-number {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+    }
+    .trust-bar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-dark);
+      background: var(--green-xlight);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .trust-item:hover { background: var(--green-light); transform: translateY(-1px); }
+    .trust-item-icon { font-size: 16px; }
+
+    /* ─── SECTION BASE ─── */
+    .section { padding: 72px 24px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 26px;
+      color: var(--green-dark);
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 15px;
+      margin-bottom: 44px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── BENEFITS ─── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px 24px;
+      text-align: center;
+      transition: box-shadow 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-mid), var(--accent));
+    }
+    .benefit-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .benefit-icon-wrap {
+      width: 60px; height: 60px;
+      background: var(--green-xlight);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 28px;
+      transition: background 0.2s;
+    }
+    .benefit-card:hover .benefit-icon-wrap { background: var(--green-light); }
+    .benefit-title { font-weight: 700; color: var(--green-dark); margin-bottom: 8px; font-size: 16px; }
+    .benefit-text { font-size: 14px; color: var(--text-soft); line-height: 1.65; }
+
+    /* ─── INGREDIENTS ─── */
+    .ingredients-section {
+      background: var(--white);
+      padding: 72px 24px;
+    }
+    .ingredient-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .ingredient-text-side .section-label { display: block; text-align: left; width: fit-content; margin-bottom: 12px; }
+    .ingredient-text-side .section-title { text-align: left; margin-bottom: 16px; }
+    .ingredient-text-side .section-sub { text-align: left; margin-left: 0; margin-bottom: 28px; }
+    .ingredient-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ingredient-fact {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--green-xlight);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      transition: all 0.2s;
+    }
+    .ingredient-fact:hover { background: var(--green-light); transform: translateX(4px); }
+    .ingredient-fact-icon {
+      width: 36px; height: 36px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .ingredient-fact-title { font-weight: 700; font-size: 14px; color: var(--green-dark); margin-bottom: 3px; }
+    .ingredient-fact-text { font-size: 13px; color: var(--text-soft); }
+    .ingredient-visual {
+      background: linear-gradient(145deg, #1a3a26, #2d9e52);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .ingredient-visual::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .ingredient-leaf { font-size: 72px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    .ingredient-name {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ingredient-latin { font-size: 13px; opacity: 0.65; margin-bottom: 24px; font-style: italic; }
+    .ingredient-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ing-stat {
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 14px 10px;
+    }
+    .ing-stat-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+    .ing-stat-label { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+
+    /* ─── DOCTOR VIDEO ─── */
+    .doctor-section {
+      background: linear-gradient(150deg, #1a3a26 0%, #1e5c35 50%, #2d9e52 100%);
+      color: white;
+      padding: 72px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .doctor-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .doctor-section::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .doctor-section .section-title { color: white; position: relative; z-index: 1; }
+    .doctor-section .section-sub { color: rgba(255,255,255,0.7); position: relative; z-index: 1; }
+    .doctor-section .section-label { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); display: block; width: fit-content; margin: 0 auto 12px; position: relative; z-index: 1; }
+    .doctor-video-wrap {
+      max-width: 380px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+    .doctor-video-wrap video { width: 100%; display: block; border-radius: 20px; }
+    .doctor-trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .doctor-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 9px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    /* ─── REVIEWS ─── */
+    .reviews-section { background: var(--bg); padding: 72px 24px; }
+    .reviews-score-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+    .rating-big {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+    .rating-stars-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .stars { color: var(--accent); font-size: 22px; letter-spacing: 2px; }
+    .review-count { color: var(--text-soft); font-size: 14px; text-align: center; margin-bottom: 44px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: var(--white);
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .review-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .review-quote {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 48px;
+      color: var(--green-light);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .reviewer-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 700; font-size: 15px; color: var(--text); }
+    .reviewer-label { font-size: 12px; color: var(--green); font-weight: 500; }
+    .review-stars { color: var(--accent); font-size: 14px; margin-bottom: 10px; }
+    .review-text { font-size: 14px; color: var(--text-soft); line-height: 1.75; }
+
+    /* ─── GUARANTEE ─── */
+    .guarantee-section { padding: 72px 24px; }
+    .guarantee-box {
+      background: linear-gradient(135deg, var(--green-xlight), #fff);
+      border: 2px solid var(--green);
+      border-radius: 24px;
+      padding: 40px 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      max-width: 780px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .guarantee-box::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(26,122,60,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .guarantee-icon-wrap {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      border-radius: 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(26,122,60,0.3);
+    }
+    .guarantee-title {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 22px;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+    .guarantee-text { font-size: 14px; color: var(--text-soft); line-height: 1.8; }
+
+    /* ─── ORDER FORM ─── */
+    .order-section {
+      background: linear-gradient(180deg, #edf7f1 0%, #d8f0e3 100%);
+      padding: 72px 24px;
+    }
+    .order-box {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .order-box-header {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: white;
+      padding: 28px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .order-box-header::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .order-box-header h3 {
+      font-family: 'Tiro Bangla', serif;
+      font-size: 22px;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .order-box-header p { font-size: 14px; opacity: 0.8; position: relative; }
+    .order-header-badges {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .order-header-badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+    .order-form { padding: 32px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .form-label span { color: var(--red); }
+    .form-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fafffe;
+      transition: all 0.2s;
+      outline: none;
+    }
+    .form-input:focus { border-color: var(--green); box-shadow: 0 0 0 4px rgba(26,122,60,0.08); background: white; }
+    .form-input.error { border-color: var(--red); }
+    .form-select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fafffe;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .form-select:focus { border-color: var(--green); }
+
+    /* Product selector */
+    .product-options { display: flex; flex-direction: column; gap: 12px; }
+    .product-option {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      background: var(--bg);
+    }
+    .product-option:hover { border-color: var(--green-mid); background: var(--green-xlight); }
+    .product-option.selected {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+    .product-option input[type="radio"] { accent-color: var(--green); width: 18px; height: 18px; }
+    .product-option-info { flex: 1; }
+    .product-option-name { font-weight: 700; font-size: 15px; color: var(--text); }
+    .product-option-desc { font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+    .product-option-price { color: var(--green); font-weight: 700; font-size: 18px; margin-top: 4px; }
+    .product-badge {
+      position: absolute;
+      top: -11px; right: 14px;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 50px;
+    }
+
+    /* Order summary */
+    .order-summary {
+      background: var(--green-xlight);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      margin-bottom: 22px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: var(--text-soft);
+    }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--green-dark);
+      border-top: 1.5px solid var(--border);
+      padding-top: 12px;
+      margin-top: 4px;
+    }
+
+    .btn-order {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      color: white;
+      padding: 18px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 6px 24px rgba(26,122,60,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-order:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(26,122,60,0.5); }
+    .btn-order:disabled { background: #aaa; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-order .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-order.loading .spinner { display: inline-block; }
+    .btn-order.loading .btn-text { display: none; }
+
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Success message */
+    .order-success {
+      display: none;
+      text-align: center;
+      padding: 48px 32px;
+    }
+    .success-icon { font-size: 68px; margin-bottom: 16px; }
+    .success-title { font-family: 'Tiro Bangla', serif; font-size: 24px; color: var(--green-dark); margin-bottom: 12px; }
+    .success-text { color: var(--text-soft); font-size: 15px; line-height: 1.8; }
+    .success-id {
+      display: inline-block;
+      background: var(--green-light);
+      border: 1px solid var(--border);
+      color: var(--green-dark);
+      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      margin: 12px 0;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0f2317;
+      color: rgba(255,255,255,0.6);
+      padding: 36px 24px;
+    }
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo { font-family: 'Tiro Bangla', serif; font-size: 18px; color: white; font-weight: 700; }
+    .footer-links { display: flex; gap: 20px; font-size: 13px; }
+    .footer-copy { font-size: 12px; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+
+    /* ─── STICKY ORDER BTN (mobile) ─── */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      color: white;
+      text-align: center;
+      padding: 17px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 200;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .hero { padding: 44px 20px 56px; }
+      .hero h1 { font-size: 24px; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.1); }
+      .stat-item:nth-child(4) { border-right: none; border-top: 1px solid rgba(255,255,255,0.1); }
+      .trust-bar-inner { gap: 8px; }
+      .ingredient-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .ingredient-text-side .section-title { text-align: center; }
+      .ingredient-text-side .section-label { margin: 0 auto 12px; display: block; }
+      .ingredient-text-side .section-sub { text-align: center; }
+      .guarantee-box { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 64px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .section { padding: 52px 20px; }
+    }
+    @media (max-width: 480px) {
+      .header-phone { display: none; }
+      .hero-badge-wrap { gap: 6px; }
+      .ingredient-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    Shukhi Life
+    <div class="logo-dot"></div>
+  </div>
+  <div class="header-right">
+    <div class="header-phone">📞 01349-880056</div>
+    <button class="header-cta" onclick="scrollToOrder()">অর্ডার করুন</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <div class="hero-badge-wrap">
+        <span class="hero-badge">✨ বাংলাদেশে #১ ব্রেইন সাপ্লিমেন্ট</span>
+        <span class="hero-badge-outline">🏥 ডাক্তার অনুমোদিত</span>
+      </div>
+      <h1>Ginko Biloba — ব্রেইনের <em>ফুড সাপ্লিমেন্ট</em>, মনোযোগ বাড়ায়, ফোকাস ঠিক রাখে</h1>
+      <p class="hero-sub">
+        প্রাকৃতিক Ginko Biloba পাতার নির্যাস থেকে তৈরি — ব্রেইনে রক্তপ্রবাহ বাড়ায়, মনোযোগ ও স্মৃতিশক্তি উন্নত করে।<br>
+        <strong>⚡ অর্ডার করুন — মাত্র ১০ মিনিটে কনফার্ম!</strong>
+      </p>
+      <div class="hero-cta-wrap">
+        <button class="btn-primary" id="heroOrderBtn" onclick="scrollToOrder()">🛒 এখনই অর্ডার করুন</button>
+      </div>
+      <div class="hero-mini-trust">
+        <div class="hero-mini-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          ক্যাশ অন ডেলিভারি
+        </div>
+        <div class="hero-mini-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          মানি ব্যাক গ্যারান্টি
+        </div>
+        <div class="hero-mini-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          সারাদেশে ডেলিভারি
+        </div>
+      </div>
+    </div>
+    <div class="video-wrapper fade-up-delay">
+      <video controls playsinline src="https://shukhilife.com/wp-content/uploads/2025/10/2.mp4"></video>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="stat-number">৩৮৮৬+</div>
+      <div class="stat-label">সন্তুষ্ট গ্রাহক</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">৪.৯★</div>
+      <div class="stat-label">গড় রেটিং</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">১০০%</div>
+      <div class="stat-label">মানি ব্যাক গ্যারান্টি</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">২৪ঘ</div>
+      <div class="stat-label">ডেলিভারি সাপোর্ট</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="trust-item-icon">🛡️</span>১০০% মানি ব্যাক গ্যারান্টি</div>
+    <div class="trust-item"><span class="trust-item-icon">🚚</span>সারাদেশে হোম ডেলিভারি</div>
+    <div class="trust-item"><span class="trust-item-icon">⭐</span>১১১৯+ ভেরিফাইড রিভিউ</div>
+    <div class="trust-item"><span class="trust-item-icon">🏥</span>ডাক্তার অনুমোদিত</div>
+    <div class="trust-item"><span class="trust-item-icon">🌿</span>১০০% প্রাকৃতিক</div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="section" style="background: var(--white);">
+  <div class="section-inner">
+    <div style="text-align:center"><span class="section-label">কেন Ginko Biloba?</span></div>
+    <h2 class="section-title">আপনার ব্রেইনকে সেরাটা দিন</h2>
+    <p class="section-sub">প্রাকৃতিক উপাদান, বৈজ্ঞানিকভাবে প্রমাণিত — প্রতিটি ক্যাপসুলে পূর্ণ পুষ্টি</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">🧠</div>
+        <div class="benefit-title">মনোযোগ বাড়ায়</div>
+        <div class="benefit-text">পড়াশোনা, কাজ বা যেকোনো মানসিক কার্যক্রমে মনোযোগ ধরে রাখতে সাহায্য করে</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">🎯</div>
+        <div class="benefit-title">ফোকাস ঠিক রাখে</div>
+        <div class="benefit-text">দীর্ঘ সময় কাজ করলেও মানসিক ক্লান্তি কমায় এবং ফোকাস মেইনটেইন করে</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">⚡</div>
+        <div class="benefit-title">ব্রেইন শার্প করে</div>
+        <div class="benefit-text">ব্রেইনে রক্তপ্রবাহ বাড়িয়ে চিন্তার গতি ও স্মৃতিশক্তি উন্নত করে</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">😴</div>
+        <div class="benefit-title">ভালো ঘুম</div>
+        <div class="benefit-text">মানসিক চাপ কমায় এবং রাতে ভালো ঘুমের পরিবেশ তৈরি করে</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients-section">
+  <div class="ingredient-wrap">
+    <div class="ingredient-text-side">
+      <span class="section-label">মূল উপাদান</span>
+      <h2 class="section-title">Ginkgo Biloba — প্রকৃতির মস্তিষ্ক টনিক</h2>
+      <p class="section-sub">২০০ মিলিয়ন বছরের পুরনো গাছের পাতা থেকে তৈরি এই নির্যাস, বিশ্বের সবচেয়ে গবেষণা করা ভেষজ উপাদানগুলির মধ্যে একটি।</p>
+      <div class="ingredient-facts">
+        <div class="ingredient-fact">
+          <div class="ingredient-fact-icon">🩸</div>
+          <div>
+            <div class="ingredient-fact-title">ব্রেইনে রক্তপ্রবাহ বাড়ায়</div>
+            <div class="ingredient-fact-text">মস্তিষ্কের মাইক্রোসার্কুলেশন উন্নত করে অক্সিজেন সরবরাহ বৃদ্ধি করে</div>
+          </div>
+        </div>
+        <div class="ingredient-fact">
+          <div class="ingredient-fact-icon">🛡️</div>
+          <div>
+            <div class="ingredient-fact-title">Antioxidant সুরক্ষা</div>
+            <div class="ingredient-fact-text">Flavonoids ও Terpenoids ব্রেইন কোষকে oxidative stress থেকে রক্ষা করে</div>
+          </div>
+        </div>
+        <div class="ingredient-fact">
+          <div class="ingredient-fact-icon">🔬</div>
+          <div>
+            <div class="ingredient-fact-title">বৈজ্ঞানিকভাবে প্রমাণিত</div>
+            <div class="ingredient-fact-text">শতাধিক ক্লিনিকাল গবেষণায় মনোযোগ ও স্মৃতি উন্নয়নে কার্যকর প্রমাণিত</div>
+          </div>
+        </div>
+        <div class="ingredient-fact">
+          <div class="ingredient-fact-icon">🌿</div>
+          <div>
+            <div class="ingredient-fact-title">সম্পূর্ণ প্রাকৃতিক</div>
+            <div class="ingredient-fact-text">কোনো কৃত্রিম রং, সংরক্ষক বা ক্ষতিকর রাসায়নিক নেই</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ingredient-visual">
+      <div class="ingredient-leaf">🍃</div>
+      <div class="ingredient-name">Ginkgo Biloba</div>
+      <div class="ingredient-latin">Ginkgo biloba L.</div>
+      <div class="ingredient-stats">
+        <div class="ing-stat">
+          <div class="ing-stat-num">24%</div>
+          <div class="ing-stat-label">Flavone Glycosides</div>
+        </div>
+        <div class="ing-stat">
+          <div class="ing-stat-num">6%</div>
+          <div class="ing-stat-label">Terpene Lactones</div>
+        </div>
+        <div class="ing-stat">
+          <div class="ing-stat-num">120mg</div>
+          <div class="ing-stat-label">every capsule</div>
+        </div>
+        <div class="ing-stat">
+          <div class="ing-stat-num">100%</div>
+          <div class="ing-stat-label">প্রাকৃতিক নির্যাস</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR VIDEO -->
+<section class="doctor-section">
+  <div style="text-align:center"><span class="section-label">বিশেষজ্ঞ মতামত</span></div>
+  <h2 class="section-title" style="margin-bottom:8px">ডাক্তার কী বলছেন?</h2>
+  <p class="section-sub" style="margin-bottom:32px">বিশেষজ্ঞ চিকিৎসকের সরাসরি মতামত শুনুন</p>
+  <div class="doctor-video-wrap">
+    <video controls playsinline src="https://shukhilife.com/wp-content/uploads/2026/01/Facebook.mp4"></video>
+  </div>
+  <div class="doctor-trust-row">
+    <div class="doctor-trust-item">🏥 ক্লিনিকালি টেস্টেড</div>
+    <div class="doctor-trust-item">✅ বিশেষজ্ঞ অনুমোদিত</div>
+    <div class="doctor-trust-item">🌿 পার্শ্বপ্রতিক্রিয়া মুক্ত</div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="section-inner">
+    <div style="text-align:center"><span class="section-label">গ্রাহক রিভিউ</span></div>
+    <h2 class="section-title" style="margin-bottom:20px">তারা যা বলছেন</h2>
+    <div class="reviews-score-wrap">
+      <div class="rating-big">4.9</div>
+      <div class="rating-stars-wrap">
+        <div class="stars">★★★★★</div>
+        <div style="font-size:13px;color:var(--text-soft)">১৯+ ভেরিফাইড রিভিউ</div>
+      </div>
+    </div>
+    <p class="review-count">১০০% সন্তুষ্ট গ্রাহক — সকলেই পরিবার ও বন্ধুদের রিকমেন্ড করেছেন</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div class="reviewer-name">Saydul Islam Farhan</div>
+            <div class="reviewer-label">✅ Verified Purchase</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">জিংকো বিলোবা আসলেই খুবই কার্যকরী একটি ব্রেইনের ফুড সাপ্লিমেন্ট। নিজে ব্যবহার করে অনেক উপকার পেয়েছি।</div>
+      </div>
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">M</div>
+          <div>
+            <div class="reviewer-name">Mohammad Redoy</div>
+            <div class="reviewer-label">✅ Verified Purchase · জানু ১৮</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">আমি একজন প্রফেশনাল সিনেমাটোগ্রাফার, অনেক দিন ধরেই আমার ছোট ছোট জিনিস ভুলে যাচ্ছিলাম। সুখি লাইফের একটা অ্যাড দেখে অর্ডার করেছিলাম — ৩ মাস খেয়েছি, ভালো রেজাল্ট পেয়েছি। অথেন্টিক প্রোডাক্টের জন্য ধন্যবাদ।</div>
+      </div>
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <div class="review-header">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Robiul Hassan</div>
+            <div class="reviewer-label">✅ Verified Purchase</div>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">অনেকদিন থেকে মাথা ঘোরা ও ভুলে যাওয়ার সমস্যায় ভুগছিলাম। এই প্রোডাক্ট ব্যবহারের পর অনেকটাই উপকার পেয়েছি। ধন্যবাদ Shukhi Life।</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="section-inner">
+    <div class="guarantee-box">
+      <div class="guarantee-icon-wrap">🏅</div>
+      <div>
+        <h3 class="guarantee-title">মানি ব্যাক গ্যারান্টি</h3>
+        <p class="guarantee-text">
+          Shukhi Life এর প্রতিটি প্রোডাক্ট ১০০% অথেন্টিক। আপনি যদি প্রোডাক্ট পেয়ে সন্তুষ্ট না হন, পণ্য ফেরত দেওয়ার পর <strong>২ কার্যদিবসের মধ্যে</strong> আপনার সম্পূর্ণ টাকা ফেরত দেওয়া হবে। আমরা আপনার বিশ্বাসকেই সর্বোচ্চ গুরুত্ব দিই।
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section class="order-section" id="orderSection">
+  <div class="section-inner">
+    <div style="text-align:center"><span class="section-label">অর্ডার করুন</span></div>
+    <h2 class="section-title">আজই শুরু করুন</h2>
+    <p class="section-sub">নিচের ফর্মটি পূরণ করুন — ১০ মিনিটের মধ্যে আপনার অর্ডার কনফার্ম হবে</p>
+    <div class="order-box">
+      <div class="order-box-header">
+        <h3>🛒 অর্ডার ফর্ম</h3>
+        <p>ঘরে বসেই পান — ডেলিভারি পেয়ে টাকা দিন</p>
+        <div class="order-header-badges">
+          <span class="order-header-badge">🔒 ১০০% নিরাপদ</span>
+          <span class="order-header-badge">🚚 ক্যাশ অন ডেলিভারি</span>
+          <span class="order-header-badge">🔄 মানি ব্যাক</span>
+        </div>
+      </div>
+
+      <!-- Order Form -->
+      <div class="order-form" id="orderFormWrap">
+        <div class="form-group">
+          <label class="form-label">প্রোডাক্ট সিলেক্ট করুন <span>*</span></label>
+          <div class="product-options">
+            <label class="product-option selected" id="opt-ginko-30">
+              <input type="radio" name="product" value="ginko-30" checked onchange="updateProduct(this)">
+              <div class="product-option-info">
+                <div class="product-option-name">Ginko Biloba — ৩০ পিস</div>
+                <div class="product-option-desc">১৫ দিনের প্যাকেজ</div>
+                <div class="product-option-price">৳ ৭৯০</div>
+              </div>
+            </label>
+            <label class="product-option" id="opt-ginko-60">
+              <div class="product-badge">🔥 বেস্ট ভ্যালু</div>
+              <input type="radio" name="product" value="ginko-60" onchange="updateProduct(this)">
+              <div class="product-option-info">
+                <div class="product-option-name">Ginko Biloba — ৬০ পিস</div>
+                <div class="product-option-desc">১ মাসের প্যাকেজ · প্ল্যাটিনাম প্যাক</div>
+                <div class="product-option-price">৳ ১,২৫০</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="custName">আপনার নাম <span>*</span></label>
+          <input type="text" id="custName" class="form-input" placeholder="আপনার পুরো নাম লিখুন" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="custPhone">মোবাইল নম্বর <span>*</span></label>
+          <input type="tel" id="custPhone" class="form-input" placeholder="01XXXXXXXXX" autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="custDistrict">জেলা <span>*</span></label>
+          <select id="custDistrict" class="form-select" onchange="updateShipping()">
+            <option value="">জেলা সিলেক্ট করুন</option>
+            <option value="Dhaka">ঢাকা (শিপিং: ৳৮০)</option>
+            <option value="Chittagong">চট্টগ্রাম (শিপিং: ৳১৩০)</option>
+            <option value="Sylhet">সিলেট (শিপিং: ৳১৩০)</option>
+            <option value="Rajshahi">রাজশাহী (শিপিং: ৳১৩০)</option>
+            <option value="Khulna">খুলনা (শিপিং: ৳১৩০)</option>
+            <option value="Barisal">বরিশাল (শিপিং: ৳১৩০)</option>
+            <option value="Rangpur">রংপুর (শিপিং: ৳১৩০)</option>
+            <option value="Mymensingh">ময়মনসিংহ (শিপিং: ৳১৩০)</option>
+            <option value="Comilla">কুমিল্লা (শিপিং: ৳১৩০)</option>
+            <option value="Narayanganj">নারায়ণগঞ্জ (শিপিং: ৳৮০)</option>
+            <option value="Gazipur">গাজীপুর (শিপিং: ৳৮০)</option>
+            <option value="Other">অন্যান্য (শিপিং: ৳১৩০)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="custAddress">সম্পূর্ণ ঠিকানা <span>*</span></label>
+          <input type="text" id="custAddress" class="form-input" placeholder="বাড়ি নং, রোড, এলাকা..." autocomplete="street-address" />
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <div class="summary-row"><span>প্রোডাক্ট মূল্য</span><span id="summaryProduct">৳ ৭৯০</span></div>
+          <div class="summary-row"><span>শিপিং চার্জ</span><span id="summaryShipping">৳ —</span></div>
+          <div class="summary-total"><span>মোট পরিশোধ</span><span id="summaryTotal">৳ ৭৯০</span></div>
+        </div>
+
+        <button class="btn-order" id="placeOrderBtn" onclick="placeOrder()">
+          <div class="spinner"></div>
+          <span class="btn-text">🔒 অর্ডার প্লেস করুন</span>
+        </button>
+        <p class="form-note">🚚 ক্যাশ অন ডেলিভারি &nbsp;·&nbsp; ১০০% নিরাপদ &nbsp;·&nbsp; ডেলিভারি পেয়ে টাকা দিন</p>
+        <div id="formError" style="color:var(--red);font-size:13px;margin-top:12px;text-align:center;display:none;background:#fdecea;padding:10px 16px;border-radius:8px;"></div>
+      </div>
+
+      <!-- Success -->
+      <div class="order-success" id="orderSuccess">
+        <div class="success-icon">🎉</div>
+        <h3 class="success-title">অর্ডার সফলভাবে হয়েছে!</h3>
+        <div class="success-id">অর্ডার আইডি: <span id="successOrderId"></span></div>
+        <p class="success-text">শীঘ্রই আমাদের টিম আপনার নম্বরে কল করে অর্ডার কনফার্ম করবে।<br>ধন্যবাদ Shukhi Life বেছে নেওয়ার জন্য! 💚</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Shukhi Life</div>
+    <div class="footer-links">
+      <span>📞 01349-880056</span>
+      <span>সারাদেশে ক্যাশ অন ডেলিভারি</span>
+    </div>
+  </div>
+  <p class="footer-copy">© 2024 Shukhi Life. All rights reserved. — আপনার সুখী জীবনের সঙ্গী।</p>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" onclick="scrollToOrder()">🛒 এখনই অর্ডার করুন — ক্যাশ অন ডেলিভারি</div>
+
+<script>
+// ─── STATE ───
+const PRICES = { 'ginko-30': 790, 'ginko-60': 1250 };
+const DHAKA_DISTRICTS = ['Dhaka', 'Narayanganj', 'Gazipur'];
+let selectedProduct = 'ginko-30';
+let shippingCharge = 0;
+
+// ─── META PIXEL HELPERS ───
+function getFbp() {
+  const match = document.cookie.match(/_fbp=([^;]+)/);
+  return match ? match[1] : null;
+}
+function getFbc() {
+  const match = document.cookie.match(/_fbc=([^;]+)/);
+  if (match) return match[1];
+  const urlParams = new URLSearchParams(window.location.search);
+  const fbclid = urlParams.get('fbclid');
+  return fbclid ? `fb.1.${Date.now()}.${fbclid}` : null;
+}
+function genEventId() {
+  return 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+}
+
+async function sendCapiEvent(eventName, customData = {}, eventId) {
+  try {
+    await fetch('/api/pixel/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        eventName,
+        fbp: getFbp(),
+        fbc: getFbc(),
+        clientUserAgent: navigator.userAgent,
+        eventSourceUrl: window.location.href,
+        customData,
+        eventId
+      })
+    });
+  } catch (e) { console.error('CAPI event error:', e); }
+}
+
+// ─── PAGE VIEW ───
+window.addEventListener('load', () => {
+  const evId = genEventId();
+  fbq('track', 'PageView', {}, { eventID: evId });
+  sendCapiEvent('PageView', {}, evId);
+});
+
+// ─── SCROLL DEPTH ───
+let scrollFired50 = false, scrollFired100 = false;
+window.addEventListener('scroll', () => {
+  const scrollPct = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
+  if (!scrollFired50 && scrollPct >= 50) {
+    scrollFired50 = true;
+    const evId = genEventId();
+    fbq('trackCustom', 'ScrollDepth50', { depth: 50 }, { eventID: evId });
+    sendCapiEvent('ScrollDepth50', { depth: 50 }, evId);
+  }
+  if (!scrollFired100 && scrollPct >= 99) {
+    scrollFired100 = true;
+    const evId = genEventId();
+    fbq('trackCustom', 'ScrollDepth100', { depth: 100 }, { eventID: evId });
+    sendCapiEvent('ScrollDepth100', { depth: 100 }, evId);
+  }
+});
+
+// ─── ADD TO CART ───
+function fireAddToCart() {
+  const evId = genEventId();
+  fbq('track', 'AddToCart', {
+    content_ids: [selectedProduct],
+    content_type: 'product',
+    value: PRICES[selectedProduct],
+    currency: 'BDT'
+  }, { eventID: evId });
+  sendCapiEvent('AddToCart', {
+    content_ids: [selectedProduct],
+    value: PRICES[selectedProduct],
+    currency: 'BDT'
+  }, evId);
+}
+
+function scrollToOrder() {
+  fireAddToCart();
+  document.getElementById('orderSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── PRODUCT SELECTION ───
+function updateProduct(radio) {
+  selectedProduct = radio.value;
+  document.querySelectorAll('.product-option').forEach(el => el.classList.remove('selected'));
+  document.getElementById('opt-' + selectedProduct).classList.add('selected');
+  updateSummary();
+}
+
+function updateShipping() {
+  const district = document.getElementById('custDistrict').value;
+  shippingCharge = DHAKA_DISTRICTS.includes(district) ? 80 : (district ? 130 : 0);
+  updateSummary();
+}
+
+function updateSummary() {
+  const price = PRICES[selectedProduct];
+  const shipping = shippingCharge;
+  const total = price + shipping;
+  document.getElementById('summaryProduct').textContent = '৳ ' + price.toLocaleString('bn-BD');
+  document.getElementById('summaryShipping').textContent = shipping ? '৳ ' + shipping : '৳ —';
+  document.getElementById('summaryTotal').textContent = '৳ ' + (shipping ? total.toLocaleString('bn-BD') : price.toLocaleString('bn-BD'));
+}
+
+// ─── PLACE ORDER ───
+async function placeOrder() {
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const district = document.getElementById('custDistrict').value;
+  const address = document.getElementById('custAddress').value.trim();
+  const errEl = document.getElementById('formError');
+
+  errEl.style.display = 'none';
+
+  if (!name) { showError('আপনার নাম লিখুন'); return; }
+  if (!phone || phone.length < 10) { showError('সঠিক মোবাইল নম্বর দিন'); return; }
+  if (!district) { showError('জেলা সিলেক্ট করুন'); return; }
+  if (!address) { showError('সম্পূর্ণ ঠিকানা লিখুন'); return; }
+
+  const btn = document.getElementById('placeOrderBtn');
+  btn.disabled = true;
+  btn.classList.add('loading');
+
+  const icEventId = genEventId();
+  fbq('track', 'InitiateCheckout', {
+    content_ids: [selectedProduct],
+    value: PRICES[selectedProduct] + shippingCharge,
+    currency: 'BDT',
+    num_items: 1
+  }, { eventID: icEventId });
+
+  await fetch('/api/orders/initiate-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name, phone, address, district,
+      products: [{ id: selectedProduct, qty: 1 }],
+      fbp: getFbp(), fbc: getFbc(),
+      clientUserAgent: navigator.userAgent,
+      eventSourceUrl: window.location.href,
+      eventId: icEventId
+    })
+  }).catch(() => {});
+
+  try {
+    const res = await fetch('/api/orders/place', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name, phone, address, district,
+        selectedProducts: [{ id: selectedProduct, qty: 1 }],
+        fbp: getFbp(), fbc: getFbc(),
+        clientUserAgent: navigator.userAgent,
+        eventSourceUrl: window.location.href
+      })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('orderFormWrap').style.display = 'none';
+      const successEl = document.getElementById('orderSuccess');
+      successEl.style.display = 'block';
+      document.getElementById('successOrderId').textContent = data.orderId;
+    } else {
+      showError(data.message || 'কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।');
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  } catch (err) {
+    showError('সার্ভার এরর। আবার চেষ্টা করুন।');
+    btn.disabled = false;
+    btn.classList.remove('loading');
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('formError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+</script>
+</body>
+</html>
