@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, '../frontend/public')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/pixel', require('./routes/pixel'));
+app.use('/api/payments', require('./routes/payments'));
 
 // Serve frontend pages
 app.get('/', (req, res) => {
@@ -33,14 +34,17 @@ app.get('/admin', (req, res) => {
 });
 
 // Connect to MongoDB and seed admin
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 45000,
+})
   .then(async () => {
     console.log('✅ MongoDB connected');
     await seedAdmin();
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
   .catch(err => {
-    console.error('❌ MongoDB connection error:', err);
+    console.error('❌ MongoDB connection error:', err.message);
     process.exit(1);
   });
 

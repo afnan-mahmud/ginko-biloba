@@ -110,7 +110,8 @@
 
     /* TABLE */
     .table-wrap { background: var(--white); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
-    .orders-table { width: 100%; border-collapse: collapse; }
+    .table-scroll { overflow-x: auto; }
+    .orders-table { width: 100%; border-collapse: collapse; min-width: 1100px; }
     .orders-table th {
       background: #f8faf9; padding: 14px 16px; text-align: left;
       font-size: 12px; font-weight: 600; color: var(--text-soft);
@@ -155,6 +156,57 @@
     .sf-btn.loading { background: #90caf9; color: white; cursor: wait; }
     .sf-sent { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 11px; padding: 3px 10px; border-radius: 10px; font-weight: 600; }
     .sf-tracking { font-size: 11px; color: var(--text-soft); margin-top: 3px; }
+
+    /* Delivery status badge */
+    .ds-badge {
+      display: inline-block; padding: 3px 9px; border-radius: 10px;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+    }
+    .ds-badge.in_review      { background: #fff3e0; color: #e65100; }
+    .ds-badge.pending        { background: #fff3e0; color: #e65100; }
+    .ds-badge.in_transit     { background: #e3f2fd; color: #1565c0; }
+    .ds-badge.delivered      { background: #e8f5e9; color: #2e7d32; }
+    .ds-badge.partial_delivered { background: #f3e5f5; color: #6a1b9a; }
+    .ds-badge.cancelled      { background: #fde8e8; color: var(--red); }
+    .ds-badge.hold           { background: #fafafa; color: #555; }
+    .ds-badge.unknown        { background: #f5f5f5; color: #999; }
+    .ds-sync {
+      display: inline-flex; align-items: center;
+      background: none; border: 1px solid var(--border);
+      color: var(--text-soft); padding: 2px 7px; border-radius: 6px;
+      font-size: 11px; cursor: pointer; font-family: inherit;
+      transition: all 0.15s; margin-top: 4px;
+    }
+    .ds-sync:hover { border-color: var(--green); color: var(--green); }
+    .ds-sync:disabled { opacity: 0.4; cursor: wait; }
+    .ds-fee { font-size: 13px; font-weight: 600; color: var(--text); }
+    .ds-fee.none { color: #bbb; font-size: 12px; }
+
+    /* Payment received toggle */
+    .pay-toggle-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .pay-toggle {
+      position: relative; width: 44px; height: 24px;
+      display: inline-block; cursor: pointer;
+    }
+    .pay-toggle input { opacity: 0; width: 0; height: 0; }
+    .pay-toggle-slider {
+      position: absolute; inset: 0; border-radius: 24px;
+      background: #e0e0e0; transition: background 0.2s;
+    }
+    .pay-toggle-slider::before {
+      content: ''; position: absolute;
+      width: 18px; height: 18px; left: 3px; top: 3px;
+      border-radius: 50%; background: white;
+      transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .pay-toggle input:checked + .pay-toggle-slider { background: var(--green); }
+    .pay-toggle input:checked + .pay-toggle-slider::before { transform: translateX(20px); }
+    .pay-toggle input:disabled + .pay-toggle-slider { cursor: not-allowed; opacity: 0.45; }
+    .pay-toggle-label { font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .pay-toggle-label.paid { color: var(--green-dark); }
+    .pay-toggle-label.unpaid { color: #999; }
+    .pay-toggle-label.locked { color: #bbb; font-style: italic; }
 
     .price-cell { font-weight: 600; color: var(--green-dark); }
     .date-cell { font-size: 12px; color: var(--text-soft); }
@@ -271,6 +323,205 @@
       .date-filter-btn { padding: 6px 12px; font-size: 12px; }
       .date-range-inputs input[type="date"] { font-size: 12px; padding: 6px 10px; }
       .dash-period-label { margin-left: 0; width: 100%; }
+    }
+
+    /* ─── STEADFAST LIVE BALANCE CARD ─── */
+    .sf-balance-card {
+      background: linear-gradient(135deg, #1a3a26, #1a7a3c);
+      border-radius: 14px; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; box-shadow: 0 4px 20px rgba(26,122,60,0.3);
+      flex-wrap: wrap; gap: 14px;
+    }
+    .sf-balance-left { display: flex; align-items: center; gap: 14px; }
+    .sf-balance-icon { font-size: 32px; }
+    .sf-balance-label { font-size: 15px; font-weight: 700; color: white; }
+    .sf-balance-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .sf-balance-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .sf-balance-amount {
+      font-size: 28px; font-weight: 700; color: #a8f0c0;
+      min-width: 140px; text-align: right;
+    }
+    .sf-balance-amount.loading { font-size: 14px; color: rgba(255,255,255,0.5); animation: pulse 1.5s infinite; }
+    .sf-balance-amount.error { font-size: 13px; color: #ffcdd2; }
+    .sf-balance-refresh {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      color: white; padding: 8px 14px; border-radius: 8px;
+      cursor: pointer; font-family: inherit; font-size: 13px;
+      transition: background 0.15s; white-space: nowrap;
+    }
+    .sf-balance-refresh:hover { background: rgba(255,255,255,0.25); }
+    .sf-balance-refresh:disabled { opacity: 0.5; cursor: wait; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    @media (max-width: 640px) {
+      .sf-balance-card { padding: 16px; }
+      .sf-balance-amount { font-size: 22px; min-width: unset; text-align: left; }
+      .sf-balance-right { width: 100%; justify-content: space-between; }
+    }
+
+    /* ─── PAYMENTS PAGE ─── */
+    .pay-summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px; margin-bottom: 24px;
+    }
+    .pay-summary-card {
+      background: var(--white); border-radius: 12px; padding: 18px 20px;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+    }
+    .pay-summary-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .pay-summary-icon.green  { background: var(--green-light); }
+    .pay-summary-icon.yellow { background: #fff8e1; }
+    .pay-summary-icon.blue   { background: #e3f2fd; }
+    .pay-summary-val { font-size: 20px; font-weight: 700; color: var(--green-dark); }
+    .pay-summary-lbl { font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+
+    .pay-toolbar {
+      background: var(--white); border-radius: 12px; padding: 14px 18px;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      margin-bottom: 16px; box-shadow: var(--shadow);
+    }
+    .pay-date-input {
+      padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 13px; outline: none; cursor: pointer;
+    }
+    .pay-date-input:focus { border-color: var(--green); }
+    .btn-pay-add {
+      padding: 8px 18px; background: var(--green); color: white;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      transition: background 0.15s; display: flex; align-items: center; gap: 6px;
+    }
+    .btn-pay-add:hover { background: var(--green-dark); }
+
+    /* Add payment modal */
+    .pay-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 600;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .pay-modal-overlay.open { display: flex; }
+    .pay-modal {
+      background: white; border-radius: 16px; width: 100%; max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+    .pay-modal-header {
+      padding: 18px 22px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pay-modal-title { font-size: 17px; font-weight: 700; }
+    .pay-modal-body { padding: 22px; }
+    .pay-form-group { margin-bottom: 16px; }
+    .pay-form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .pay-form-input {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-family: inherit; font-size: 14px; outline: none;
+    }
+    .pay-form-input:focus { border-color: var(--green); }
+    .pay-form-actions { display: flex; gap: 10px; margin-top: 4px; }
+    .btn-pay-save {
+      flex: 1; padding: 12px; background: var(--green); color: white;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      transition: background 0.15s;
+    }
+    .btn-pay-save:hover { background: var(--green-dark); }
+    .btn-pay-cancel {
+      padding: 12px 18px; background: #f5f5f5; color: var(--text);
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: inherit; font-size: 14px;
+    }
+
+    /* Payments table */
+    .pay-table-wrap { background: var(--white); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+    .pay-table { width: 100%; border-collapse: collapse; }
+    .pay-table th {
+      background: #f8faf9; padding: 12px 16px; text-align: left;
+      font-size: 12px; font-weight: 600; color: var(--text-soft);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pay-table td { padding: 13px 16px; font-size: 14px; border-bottom: 1px solid #f0f4f2; vertical-align: middle; }
+    .pay-table tr:last-child td { border-bottom: none; }
+    .pay-table tr:hover td { background: #fafff9; }
+    .pay-amount { font-weight: 700; font-size: 16px; color: var(--green-dark); }
+    .pay-note-cell { color: var(--text-soft); font-size: 13px; max-width: 260px; }
+    .pay-date-cell { font-weight: 600; }
+    .btn-pay-del {
+      padding: 4px 10px; border-radius: 6px; border: 1px solid #fde8e8;
+      background: #fde8e8; color: var(--red); font-size: 12px; cursor: pointer;
+      font-family: inherit; font-weight: 600; transition: all 0.15s;
+    }
+    .btn-pay-del:hover { background: var(--red); color: white; }
+    .btn-pay-edit {
+      padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border);
+      background: white; color: var(--text-soft); font-size: 12px; cursor: pointer;
+      font-family: inherit; font-weight: 600; transition: all 0.15s; margin-right: 6px;
+    }
+    .btn-pay-edit:hover { border-color: var(--green); color: var(--green); }
+    .pay-empty { text-align: center; padding: 52px 20px; color: var(--text-soft); }
+    .pay-empty-icon { font-size: 44px; margin-bottom: 10px; }
+
+    @media (max-width: 640px) {
+      .pay-summary-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .pay-summary-card { padding: 14px 12px; gap: 10px; }
+      .pay-summary-icon { width: 36px; height: 36px; font-size: 16px; }
+      .pay-summary-val { font-size: 17px; }
+      .pay-modal-overlay { padding: 0; align-items: flex-end; }
+      .pay-modal { border-radius: 20px 20px 0 0; }
+      .pay-table-wrap { overflow-x: auto; }
+    }
+
+    /* ─── ACCOUNTS PAGE ─── */
+    .acc-section { margin-bottom: 24px; }
+    .acc-section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .acc-section-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .acc-section-icon.green { background: var(--green-light); }
+    .acc-section-icon.orange { background: #fff3e0; }
+    .acc-section-icon.blue { background: #e3f2fd; }
+    .acc-section-title { font-size: 16px; font-weight: 700; color: var(--text); }
+    .acc-section-sub { font-size: 12px; color: var(--text-soft); }
+    .acc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .acc-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+    .acc-card {
+      background: var(--white); border-radius: 12px; padding: 20px;
+      box-shadow: var(--shadow); text-align: center;
+      border-top: 3px solid var(--border);
+      transition: transform 0.15s;
+    }
+    .acc-card:hover { transform: translateY(-2px); }
+    .acc-card.green-border { border-top-color: var(--green); }
+    .acc-card.orange-border { border-top-color: var(--orange); }
+    .acc-card.blue-border { border-top-color: var(--blue); }
+    .acc-card.red-border { border-top-color: var(--red); }
+    .acc-card-label {
+      font-size: 12px; font-weight: 600; color: var(--text-soft);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .acc-card-value {
+      font-size: 24px; font-weight: 700; color: var(--green-dark);
+    }
+    .acc-card-value.warn { color: var(--orange); }
+    .acc-card-value.danger { color: var(--red); }
+    .acc-card-value.info { color: var(--blue); }
+
+    @media (max-width: 640px) {
+      .acc-grid { grid-template-columns: 1fr; gap: 10px; }
+      .acc-grid.two-col { grid-template-columns: 1fr; }
+      .acc-card { padding: 16px; }
+      .acc-card-value { font-size: 20px; }
     }
 
     /* Change password form */
@@ -442,6 +693,14 @@
       <span class="mn-icon">📦</span>
       <span>Orders</span>
     </div>
+    <div class="mobile-nav-item" id="mn-payments" onclick="showPage('payments')">
+      <span class="mn-icon">💵</span>
+      <span>Payments</span>
+    </div>
+    <div class="mobile-nav-item" id="mn-accounts" onclick="showPage('accounts')">
+      <span class="mn-icon">📒</span>
+      <span>Accounts</span>
+    </div>
     <div class="mobile-nav-item" id="mn-settings" onclick="showPage('settings')">
       <span class="mn-icon">⚙️</span>
       <span>Settings</span>
@@ -461,6 +720,12 @@
     </div>
     <div class="nav-item" id="snav-orders" onclick="showPage('orders')">
       <span class="nav-icon">📦</span><span>Orders</span>
+    </div>
+    <div class="nav-item" id="snav-payments" onclick="showPage('payments')">
+      <span class="nav-icon">💵</span><span>Payments</span>
+    </div>
+    <div class="nav-item" id="snav-accounts" onclick="showPage('accounts')">
+      <span class="nav-icon">📒</span><span>Accounts</span>
     </div>
     <div class="nav-item" id="snav-settings" onclick="showPage('settings')">
       <span class="nav-icon">⚙️</span><span>Settings</span>
@@ -515,15 +780,17 @@
       <div class="dash-summary-title">Orders <span id="recentOrdersCount" style="font-size:13px;color:var(--text-soft);font-weight:400"></span></div>
     </div>
     <div class="table-wrap" id="recentOrdersWrap">
-      <table class="orders-table" id="recentOrdersTable">
-        <thead><tr>
-          <th>Order ID</th><th>Customer</th><th>Product</th>
-          <th>Total</th><th>Status</th><th>Date</th>
-        </tr></thead>
-        <tbody id="recentOrdersBody">
-          <tr class="loading-row"><td colspan="6">Loading...</td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="orders-table" id="recentOrdersTable" style="min-width:600px">
+          <thead><tr>
+            <th>Order ID</th><th>Customer</th><th>Product</th>
+            <th>Total</th><th>Status</th><th>Date</th>
+          </tr></thead>
+          <tbody id="recentOrdersBody">
+            <tr class="loading-row"><td colspan="6">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -544,15 +811,17 @@
       <button class="refresh-btn" onclick="loadOrders()">🔄 Refresh</button>
     </div>
     <div class="table-wrap">
-      <table class="orders-table">
-        <thead><tr>
-          <th>Order ID</th><th>Customer</th><th>Products</th>
-          <th>Total</th><th>Pixel</th><th>Status</th><th>Date</th><th>Action</th><th>Steadfast</th>
-        </tr></thead>
-        <tbody id="ordersTableBody">
-          <tr class="loading-row"><td colspan="9">Loading...</td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="orders-table">
+          <thead><tr>
+            <th>Order ID</th><th>Customer</th><th>Products</th>
+            <th>Total</th><th>Pixel</th><th>Status</th><th>Date</th><th>Action</th><th>Steadfast</th><th>Delivery Status</th><th>Delivery Charge</th><th>Payment</th>
+          </tr></thead>
+          <tbody id="ordersTableBody">
+            <tr class="loading-row"><td colspan="12">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="pagination" id="ordersPagination">
         <span id="paginationInfo"></span>
         <div class="page-btns" id="paginationBtns"></div>
@@ -566,6 +835,112 @@
     <div class="mobile-pagination" id="mobilePagination" style="display:none">
       <span id="mobilePaginationInfo"></span>
       <div class="page-btns" id="mobilePaginationBtns"></div>
+    </div>
+  </div>
+
+  <!-- PAYMENTS PAGE -->
+  <div class="page" id="page-payments">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Payments</div>
+        <div class="page-sub">Steadfast balance ও payout history</div>
+      </div>
+    </div>
+
+    <!-- STEADFAST LIVE BALANCE -->
+    <div class="sf-balance-card" id="sfBalanceCard">
+      <div class="sf-balance-left">
+        <div class="sf-balance-icon">🏦</div>
+        <div>
+          <div class="sf-balance-label">Steadfast Current Balance</div>
+          <div class="sf-balance-sub">এখন Steadfast account এ কত টাকা আছে</div>
+        </div>
+      </div>
+      <div class="sf-balance-right">
+        <div class="sf-balance-amount" id="sfBalanceAmount">লোড হচ্ছে...</div>
+        <button class="sf-balance-refresh" onclick="loadSteadfastBalance()" id="sfRefreshBtn" title="Refresh">🔄 Refresh</button>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="pay-summary-grid">
+      <div class="pay-summary-card">
+        <div class="pay-summary-icon green">💰</div>
+        <div><div class="pay-summary-val" id="ps-total">৳—</div><div class="pay-summary-lbl">মোট পেমেন্ট পেয়েছি</div></div>
+      </div>
+      <div class="pay-summary-card">
+        <div class="pay-summary-icon yellow">📅</div>
+        <div><div class="pay-summary-val" id="ps-month">৳—</div><div class="pay-summary-lbl">এই মাসে পেয়েছি</div></div>
+      </div>
+      <div class="pay-summary-card">
+        <div class="pay-summary-icon blue">🔢</div>
+        <div><div class="pay-summary-val" id="ps-count">—</div><div class="pay-summary-lbl">মোট এন্ট্রি</div></div>
+      </div>
+      <div class="pay-summary-card">
+        <div class="pay-summary-icon green">📈</div>
+        <div><div class="pay-summary-val" id="ps-avg">৳—</div><div class="pay-summary-lbl">গড় প্রতি পেমেন্ট</div></div>
+      </div>
+    </div>
+
+    <!-- Toolbar: date filter + add button -->
+    <div class="pay-toolbar">
+      <span style="font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px">📅 ফিল্টার:</span>
+      <button class="date-filter-btn active" id="pf-all"       onclick="setPayFilter('all',this)">All Time</button>
+      <button class="date-filter-btn"        id="pf-today"     onclick="setPayFilter('today',this)">Today</button>
+      <button class="date-filter-btn"        id="pf-yesterday" onclick="setPayFilter('yesterday',this)">Yesterday</button>
+      <button class="date-filter-btn"        id="pf-thismonth" onclick="setPayFilter('thismonth',this)">এই মাস</button>
+      <button class="date-filter-btn"        id="pf-custom"    onclick="setPayFilter('custom',this)">📅 Custom</button>
+      <div class="date-range-inputs" id="payDateRangeInputs">
+        <input type="date" id="payDateFrom" class="pay-date-input" onchange="loadPayments()" />
+        <span class="date-range-sep">→</span>
+        <input type="date" id="payDateTo" class="pay-date-input" onchange="loadPayments()" />
+      </div>
+      <button class="btn-pay-add" onclick="openPayModal()" style="margin-left:auto">＋ নতুন এন্ট্রি</button>
+    </div>
+
+    <!-- Payments Table -->
+    <div class="pay-table-wrap" id="payTableWrap">
+      <table class="pay-table">
+        <thead><tr>
+          <th>তারিখ</th>
+          <th>পরিমাণ (৳)</th>
+          <th>নোট</th>
+          <th>যোগ করা হয়েছে</th>
+          <th>Action</th>
+        </tr></thead>
+        <tbody id="payTableBody">
+          <tr><td colspan="5" style="text-align:center;padding:30px;color:#999">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ACCOUNTS PAGE -->
+  <div class="page" id="page-accounts">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Accounts</div>
+        <div class="page-sub">হিসাব-নিকাশ</div>
+      </div>
+    </div>
+
+    <!-- Date Filter -->
+    <div class="date-filter-bar">
+      <span class="date-filter-label">📅 Filter:</span>
+      <button class="date-filter-btn active" id="af-all" onclick="setAccFilter('all',this)">All Time</button>
+      <button class="date-filter-btn" id="af-today" onclick="setAccFilter('today',this)">Today</button>
+      <button class="date-filter-btn" id="af-yesterday" onclick="setAccFilter('yesterday',this)">Yesterday</button>
+      <button class="date-filter-btn" id="af-thismonth" onclick="setAccFilter('thismonth',this)">এই মাস</button>
+      <button class="date-filter-btn" id="af-custom" onclick="setAccFilter('custom',this)">📅 Custom</button>
+      <div class="date-range-inputs" id="accDateRangeInputs">
+        <input type="date" id="accDateFrom" onchange="loadAccountsSummary()" />
+        <span class="date-range-sep">→</span>
+        <input type="date" id="accDateTo" onchange="loadAccountsSummary()" />
+      </div>
+    </div>
+
+    <div id="accContent">
+      <div style="text-align:center;padding:40px;color:var(--text-soft)">Loading...</div>
     </div>
   </div>
 
@@ -602,6 +977,36 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- PAYMENT ADD/EDIT MODAL -->
+<div class="pay-modal-overlay" id="payModal">
+  <div class="pay-modal">
+    <div class="pay-modal-header">
+      <div class="pay-modal-title" id="payModalTitle">নতুন পেমেন্ট যোগ করুন</div>
+      <button class="modal-close" onclick="closePayModal()">✕</button>
+    </div>
+    <div class="pay-modal-body">
+      <input type="hidden" id="payEditId" />
+      <div class="pay-form-group">
+        <label class="pay-form-label">তারিখ <span style="color:var(--red)">*</span></label>
+        <input type="date" id="payFormDate" class="pay-form-input" />
+      </div>
+      <div class="pay-form-group">
+        <label class="pay-form-label">পরিমাণ (৳) <span style="color:var(--red)">*</span></label>
+        <input type="number" id="payFormAmount" class="pay-form-input" placeholder="0" min="0" step="1" />
+      </div>
+      <div class="pay-form-group">
+        <label class="pay-form-label">নোট (ঐচ্ছিক)</label>
+        <input type="text" id="payFormNote" class="pay-form-input" placeholder="যেমন: Steadfast weekly payout" />
+      </div>
+      <div id="payFormError" style="color:var(--red);font-size:13px;margin-bottom:10px;display:none"></div>
+      <div class="pay-form-actions">
+        <button class="btn-pay-cancel" onclick="closePayModal()">বাতিল</button>
+        <button class="btn-pay-save" onclick="savePayment()">💾 সেভ করুন</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -644,6 +1049,8 @@ function showPage(name) {
     document.getElementById('searchInput').value = '';
     loadOrders();
   }
+  if (name === 'payments') { loadSteadfastBalance(); loadPayments(); }
+  if (name === 'accounts') loadAccountsSummary();
 }
 
 // ─── DASHBOARD ───
@@ -766,7 +1173,7 @@ function applyDashboardFilter() {
 
 // ─── ORDERS ───
 async function loadOrders() {
-  document.getElementById('ordersTableBody').innerHTML = '<tr class="loading-row"><td colspan="9">Loading...</td></tr>';
+  document.getElementById('ordersTableBody').innerHTML = '<tr class="loading-row"><td colspan="12">Loading...</td></tr>';
   try {
     const res = await fetch('/api/orders?limit=500', { headers: authHeaders() });
     const data = await res.json();
@@ -815,6 +1222,133 @@ function buildSfCell(o) {
   return `<button class="sf-btn send" disabled title="Confirm order first">📦 Send</button>`;
 }
 
+const DS_LABELS = {
+  in_review: 'In Review', In_Review: 'In Review',
+  pending: 'Pending',
+  in_transit: 'In Transit', In_Transit: 'In Transit',
+  delivered: 'Delivered', Delivered: 'Delivered',
+  partial_delivered: 'Part. Delivered', Partial_Delivered: 'Part. Delivered',
+  cancelled: 'Cancelled', Cancelled: 'Cancelled',
+  hold: 'On Hold', Hold: 'On Hold'
+};
+function dsClass(s) {
+  if (!s) return 'unknown';
+  const l = s.toLowerCase();
+  if (l.includes('transit')) return 'in_transit';
+  if (l.includes('deliver') && !l.includes('partial')) return 'delivered';
+  if (l.includes('partial')) return 'partial_delivered';
+  if (l.includes('cancel')) return 'cancelled';
+  if (l.includes('hold')) return 'hold';
+  if (l.includes('review') || l.includes('pending')) return 'in_review';
+  return 'unknown';
+}
+
+function buildDeliveryStatusCell(o) {
+  if (!o.steadfast?.consignment_id) return '<span style="color:#ccc;font-size:12px">—</span>';
+  const ds = o.steadfast.delivery_status;
+  const label = ds ? (DS_LABELS[ds] || ds) : '—';
+  const cls   = ds ? dsClass(ds) : 'unknown';
+  const updAt = o.steadfast.statusUpdatedAt
+    ? `<div class="sf-tracking">Updated: ${formatDate(o.steadfast.statusUpdatedAt)}</div>` : '';
+  return `
+    <span class="ds-badge ${cls}">${label}</span>
+    ${updAt}
+    <br><button class="ds-sync" id="dss-${o._id}" onclick="syncDeliveryStatus('${o._id}')">🔄 Sync</button>`;
+}
+
+function buildDeliveryFeeCell(o) {
+  if (!o.steadfast?.consignment_id) return '<span style="color:#ccc;font-size:12px">—</span>';
+  if (o.steadfast.delivery_fee != null) {
+    return `<span class="ds-fee">৳${Number(o.steadfast.delivery_fee).toLocaleString()}</span>`;
+  }
+  return `<span class="ds-fee none">Not yet</span>`;
+}
+
+function isDeliveredStatus(ds) {
+  if (!ds) return false;
+  const l = ds.toLowerCase();
+  return l.includes('deliver') && !l.includes('partial');
+}
+
+function buildPaymentToggleCell(o) {
+  if (!o.steadfast?.consignment_id) {
+    return '<span style="color:#ccc;font-size:12px">—</span>';
+  }
+  const delivered  = isDeliveredStatus(o.steadfast.delivery_status);
+  const received   = !!o.steadfast.payment_received;
+  const disabledAttr = delivered ? '' : 'disabled';
+  const checkedAttr  = received ? 'checked' : '';
+  const labelClass   = !delivered ? 'locked' : received ? 'paid' : 'unpaid';
+  const labelText    = !delivered ? 'Awaiting' : received ? '✓ Paid' : 'Unpaid';
+
+  return `
+    <div class="pay-toggle-wrap">
+      <label class="pay-toggle" title="${!delivered ? 'Delivery এর পর enable হবে' : ''}">
+        <input type="checkbox" ${checkedAttr} ${disabledAttr}
+          onchange="togglePaymentReceived('${o._id}', this)">
+        <span class="pay-toggle-slider"></span>
+      </label>
+      <span class="pay-toggle-label ${labelClass}">${labelText}</span>
+    </div>`;
+}
+
+async function togglePaymentReceived(orderId, checkbox) {
+  const newVal = checkbox.checked;
+  checkbox.disabled = true;
+
+  try {
+    const res  = await fetch(`/api/orders/${orderId}/payment-received`, {
+      method: 'PATCH',
+      headers: authHeaders(),
+      body: JSON.stringify({ payment_received: newVal })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      const order = allOrders.find(o => o._id === orderId);
+      if (order?.steadfast) {
+        order.steadfast.payment_received    = data.payment_received;
+        order.steadfast.payment_received_at = data.payment_received_at;
+      }
+      applyFilter();
+      showToast(newVal ? '✅ Payment received mark করা হয়েছে' : 'Payment mark সরানো হয়েছে');
+    } else {
+      checkbox.checked  = !newVal;
+      checkbox.disabled = false;
+      showToast(data.message || 'আপডেট ব্যর্থ', true);
+    }
+  } catch (e) {
+    checkbox.checked  = !newVal;
+    checkbox.disabled = false;
+    showToast('Server error', true);
+  }
+}
+
+async function syncDeliveryStatus(orderId) {
+  const btn = document.getElementById('dss-' + orderId);
+  if (btn) { btn.disabled = true; btn.textContent = '⏳'; }
+  try {
+    const res  = await fetch(`/api/orders/${orderId}/steadfast-status`, { headers: authHeaders() });
+    const data = await res.json();
+    if (data.success) {
+      const order = allOrders.find(o => o._id === orderId);
+      if (order && order.steadfast) {
+        order.steadfast.delivery_status  = data.delivery_status;
+        order.steadfast.delivery_fee     = data.delivery_fee;
+        order.steadfast.statusUpdatedAt  = data.statusUpdatedAt;
+      }
+      applyFilter();
+      showToast('✅ Delivery status আপডেট হয়েছে: ' + (data.delivery_status || '—'));
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = '🔄 Sync'; }
+      showToast(data.message || 'Sync ব্যর্থ হয়েছে', true);
+    }
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = '🔄 Sync'; }
+    showToast('Server error', true);
+  }
+}
+
 function buildPaginationBtns(totalPages, containerId) {
   let btns = '';
   btns += `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
@@ -838,7 +1372,7 @@ function renderOrders() {
     : '';
 
   if (!pageOrders.length) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="table-empty"><div class="empty-icon">📭</div>No orders found</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="12"><div class="table-empty"><div class="empty-icon">📭</div>No orders found</div></td></tr>`;
     cardsContainer.innerHTML = `<div style="text-align:center;padding:48px 20px;color:var(--text-soft)"><div style="font-size:40px;margin-bottom:10px">📭</div>No orders found</div>`;
     document.getElementById('paginationInfo').textContent = '';
     document.getElementById('paginationBtns').innerHTML = '';
@@ -869,6 +1403,9 @@ function renderOrders() {
       </select>
     </td>
     <td>${buildSfCell(o)}</td>
+    <td>${buildDeliveryStatusCell(o)}</td>
+    <td>${buildDeliveryFeeCell(o)}</td>
+    <td>${buildPaymentToggleCell(o)}</td>
   </tr>`).join('');
 
   // ── Mobile cards ──
@@ -893,6 +1430,12 @@ function renderOrders() {
           </select>
           <div class="oc-sf">${buildSfCell(o)}</div>
         </div>
+        ${o.steadfast?.consignment_id ? `
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap">
+          <div>${buildDeliveryStatusCell(o)}</div>
+          ${o.steadfast.delivery_fee != null ? `<div style="font-size:13px;color:var(--text-soft)">Delivery: <strong>৳${o.steadfast.delivery_fee}</strong></div>` : ''}
+          <div>${buildPaymentToggleCell(o)}</div>
+        </div>` : ''}
       </div>
     </div>
   `).join('');
@@ -1014,6 +1557,24 @@ async function showOrderDetail(id) {
     <div class="detail-row"><span class="detail-label">Steadfast</span><span class="detail-value">${order.steadfast?.consignment_id
       ? `<span class="sf-sent">✓ Sent</span><br><span style="font-size:12px;color:var(--text-soft)">ID: ${order.steadfast.consignment_id}${order.steadfast.tracking_code ? ' | Track: ' + order.steadfast.tracking_code : ''}</span>`
       : '<span class="meta-pending">Not sent</span>'}</span></div>
+    <div class="detail-row"><span class="detail-label">Delivery Status</span><span class="detail-value">${
+      order.steadfast?.delivery_status
+        ? `<span class="ds-badge ${dsClass(order.steadfast.delivery_status)}">${DS_LABELS[order.steadfast.delivery_status] || order.steadfast.delivery_status}</span>`
+        : '<span class="meta-pending">—</span>'
+    }</span></div>
+    <div class="detail-row"><span class="detail-label">Delivery Charge</span><span class="detail-value">${
+      order.steadfast?.delivery_fee != null
+        ? `<strong>৳${Number(order.steadfast.delivery_fee).toLocaleString()}</strong>`
+        : '<span class="meta-pending">—</span>'
+    }</span></div>
+    <div class="detail-row"><span class="detail-label">Payment Status</span><span class="detail-value">${
+      !order.steadfast?.consignment_id ? '<span class="meta-pending">—</span>'
+      : order.steadfast.payment_received
+        ? `<span class="ds-badge delivered">✓ Paid</span>${order.steadfast.payment_received_at ? `<br><span style="font-size:11px;color:var(--text-soft)">${formatDate(order.steadfast.payment_received_at)}</span>` : ''}`
+        : isDeliveredStatus(order.steadfast.delivery_status)
+          ? '<span class="ds-badge in_review">Unpaid</span>'
+          : '<span class="meta-pending">Awaiting delivery</span>'
+    }</span></div>
     <div class="detail-row"><span class="detail-label">Order Date</span><span class="detail-value">${formatDate(order.createdAt)}</span></div>
   `;
   modal.classList.add('open');
@@ -1021,6 +1582,352 @@ async function showOrderDetail(id) {
 
 function closeModal() {
   document.getElementById('orderModal').classList.remove('open');
+}
+
+// ─── PAYMENTS ───
+let currentPayFilter = 'all';
+
+async function loadSteadfastBalance() {
+  const amountEl = document.getElementById('sfBalanceAmount');
+  const refreshBtn = document.getElementById('sfRefreshBtn');
+  amountEl.className = 'sf-balance-amount loading';
+  amountEl.textContent = 'লোড হচ্ছে...';
+  refreshBtn.disabled = true;
+
+  try {
+    const res  = await fetch('/api/payments/steadfast-balance', { headers: authHeaders() });
+    const data = await res.json();
+    refreshBtn.disabled = false;
+
+    if (data.success) {
+      // Steadfast returns { current_balance: 1234.56 } or similar
+      const bal = data.data?.current_balance ?? data.data?.balance ?? data.data;
+      if (typeof bal === 'number' || (typeof bal === 'string' && !isNaN(bal))) {
+        amountEl.className = 'sf-balance-amount';
+        amountEl.textContent = '৳' + Number(bal).toLocaleString('en-BD');
+      } else {
+        // Show raw response if structure is different
+        amountEl.className = 'sf-balance-amount';
+        amountEl.textContent = JSON.stringify(data.data);
+      }
+    } else {
+      amountEl.className = 'sf-balance-amount error';
+      amountEl.textContent = '⚠️ ' + (data.message || 'লোড করা যায়নি');
+    }
+  } catch (e) {
+    refreshBtn.disabled = false;
+    amountEl.className = 'sf-balance-amount error';
+    amountEl.textContent = '⚠️ সংযোগ ব্যর্থ';
+  }
+}
+
+function setPayFilter(type, btn) {
+  currentPayFilter = type;
+  document.querySelectorAll('#page-payments .date-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const rangeEl = document.getElementById('payDateRangeInputs');
+  if (type === 'custom') {
+    rangeEl.classList.add('visible');
+    const today = toLocalDateStr(new Date());
+    if (!document.getElementById('payDateFrom').value) document.getElementById('payDateFrom').value = today;
+    if (!document.getElementById('payDateTo').value)   document.getElementById('payDateTo').value = today;
+  } else {
+    rangeEl.classList.remove('visible');
+  }
+  loadPayments();
+}
+
+function getPayDateRange() {
+  const now = new Date();
+  if (currentPayFilter === 'today') {
+    const d = toLocalDateStr(now);
+    return { from: d, to: d };
+  }
+  if (currentPayFilter === 'yesterday') {
+    const y = new Date(now); y.setDate(y.getDate() - 1);
+    const d = toLocalDateStr(y);
+    return { from: d, to: d };
+  }
+  if (currentPayFilter === 'thismonth') {
+    const y = now.getFullYear(), m = String(now.getMonth() + 1).padStart(2, '0');
+    const lastDay = new Date(y, now.getMonth() + 1, 0).getDate();
+    return { from: `${y}-${m}-01`, to: `${y}-${m}-${String(lastDay).padStart(2, '0')}` };
+  }
+  if (currentPayFilter === 'custom') {
+    const from = document.getElementById('payDateFrom').value;
+    const to   = document.getElementById('payDateTo').value;
+    if (from && to) return { from, to };
+  }
+  return {};
+}
+
+async function loadPayments() {
+  const tbody = document.getElementById('payTableBody');
+  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#999">Loading...</td></tr>';
+  try {
+    const range = getPayDateRange();
+    const params = new URLSearchParams();
+    if (range.from) params.set('from', range.from);
+    if (range.to)   params.set('to',   range.to);
+    const url = '/api/payments' + (params.toString() ? '?' + params.toString() : '');
+    const res = await fetch(url, { headers: authHeaders() });
+    const data = await res.json();
+    const payments = data.payments || [];
+    renderPayments(payments);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--red)">লোড করতে সমস্যা হয়েছে</td></tr>';
+  }
+}
+
+function renderPayments(payments) {
+  // Summary cards — always show all-time stats + filtered
+  const allTotal = payments.reduce((s, p) => s + p.amount, 0);
+  const now = new Date();
+  const thisMonthStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+  const monthTotal = payments.filter(p => p.date.startsWith(thisMonthStr)).reduce((s, p) => s + p.amount, 0);
+  const avg = payments.length ? Math.round(allTotal / payments.length) : 0;
+
+  document.getElementById('ps-total').textContent = '৳' + allTotal.toLocaleString();
+  document.getElementById('ps-month').textContent = currentPayFilter === 'all' || currentPayFilter === 'thismonth'
+    ? '৳' + monthTotal.toLocaleString()
+    : '৳' + allTotal.toLocaleString();
+  document.getElementById('ps-count').textContent = payments.length;
+  document.getElementById('ps-avg').textContent = '৳' + avg.toLocaleString();
+
+  const tbody = document.getElementById('payTableBody');
+  if (!payments.length) {
+    tbody.innerHTML = `<tr><td colspan="5">
+      <div class="pay-empty"><div class="pay-empty-icon">💸</div>কোনো এন্ট্রি নেই</div>
+    </td></tr>`;
+    return;
+  }
+  tbody.innerHTML = payments.map(p => `
+    <tr>
+      <td class="pay-date-cell">${formatPayDate(p.date)}</td>
+      <td class="pay-amount">৳${Number(p.amount).toLocaleString()}</td>
+      <td class="pay-note-cell">${p.note || '<span style="opacity:0.4">—</span>'}</td>
+      <td class="date-cell">${formatDate(p.createdAt)}</td>
+      <td>
+        <button class="btn-pay-edit" onclick="openPayModal('${p._id}','${p.date}',${p.amount},'${escNote(p.note)}')">✏️ Edit</button>
+        <button class="btn-pay-del" onclick="deletePayment('${p._id}')">🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function escNote(s) {
+  return (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
+function formatPayDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-BD', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function openPayModal(id, date, amount, note) {
+  document.getElementById('payEditId').value = id || '';
+  document.getElementById('payModalTitle').textContent = id ? 'পেমেন্ট এডিট করুন' : 'নতুন পেমেন্ট যোগ করুন';
+  document.getElementById('payFormDate').value   = date   || toLocalDateStr(new Date());
+  document.getElementById('payFormAmount').value = amount || '';
+  document.getElementById('payFormNote').value   = note   || '';
+  document.getElementById('payFormError').style.display = 'none';
+  document.getElementById('payModal').classList.add('open');
+}
+
+function closePayModal() {
+  document.getElementById('payModal').classList.remove('open');
+}
+
+async function savePayment() {
+  const id     = document.getElementById('payEditId').value;
+  const date   = document.getElementById('payFormDate').value;
+  const amount = document.getElementById('payFormAmount').value;
+  const note   = document.getElementById('payFormNote').value.trim();
+  const errEl  = document.getElementById('payFormError');
+
+  if (!date || !amount || Number(amount) <= 0) {
+    errEl.textContent = 'তারিখ এবং সঠিক পরিমাণ দিন';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  try {
+    const url    = id ? `/api/payments/${id}` : '/api/payments';
+    const method = id ? 'PATCH' : 'POST';
+    const res    = await fetch(url, {
+      method,
+      headers: authHeaders(),
+      body: JSON.stringify({ date, amount: Number(amount), note })
+    });
+    const data = await res.json();
+    if (data.success) {
+      closePayModal();
+      loadPayments();
+      showToast(id ? '✅ পেমেন্ট আপডেট হয়েছে' : '✅ পেমেন্ট যোগ হয়েছে');
+    } else {
+      errEl.textContent = data.message || 'সমস্যা হয়েছে';
+      errEl.style.display = 'block';
+    }
+  } catch (e) {
+    errEl.textContent = 'Server error';
+    errEl.style.display = 'block';
+  }
+}
+
+async function deletePayment(id) {
+  if (!confirm('এই এন্ট্রি মুছে ফেলবেন?')) return;
+  try {
+    const res  = await fetch(`/api/payments/${id}`, { method: 'DELETE', headers: authHeaders() });
+    const data = await res.json();
+    if (data.success) { loadPayments(); showToast('এন্ট্রি মুছে ফেলা হয়েছে'); }
+    else showToast('মুছতে সমস্যা হয়েছে', true);
+  } catch (e) { showToast('Server error', true); }
+}
+
+// Close pay modal on overlay click
+document.getElementById('payModal').addEventListener('click', function(e) {
+  if (e.target === this) closePayModal();
+});
+
+// ─── ACCOUNTS ───
+let currentAccFilter = 'all';
+
+function setAccFilter(type, btn) {
+  currentAccFilter = type;
+  document.querySelectorAll('#page-accounts .date-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const rangeEl = document.getElementById('accDateRangeInputs');
+  if (type === 'custom') {
+    rangeEl.classList.add('visible');
+    const today = toLocalDateStr(new Date());
+    if (!document.getElementById('accDateFrom').value) document.getElementById('accDateFrom').value = today;
+    if (!document.getElementById('accDateTo').value)   document.getElementById('accDateTo').value = today;
+  } else {
+    rangeEl.classList.remove('visible');
+  }
+  loadAccountsSummary();
+}
+
+function getAccDateRange() {
+  const now = new Date();
+  if (currentAccFilter === 'today') {
+    const d = toLocalDateStr(now);
+    return { from: d, to: d };
+  }
+  if (currentAccFilter === 'yesterday') {
+    const y = new Date(now); y.setDate(y.getDate() - 1);
+    const d = toLocalDateStr(y);
+    return { from: d, to: d };
+  }
+  if (currentAccFilter === 'thismonth') {
+    const y = now.getFullYear(), m = String(now.getMonth() + 1).padStart(2, '0');
+    const lastDay = new Date(y, now.getMonth() + 1, 0).getDate();
+    return { from: `${y}-${m}-01`, to: `${y}-${m}-${String(lastDay).padStart(2, '0')}` };
+  }
+  if (currentAccFilter === 'custom') {
+    const from = document.getElementById('accDateFrom').value;
+    const to   = document.getElementById('accDateTo').value;
+    if (from && to) return { from, to };
+  }
+  return {};
+}
+
+async function loadAccountsSummary() {
+  const container = document.getElementById('accContent');
+  container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-soft)">Loading...</div>';
+  try {
+    const range = getAccDateRange();
+    const params = new URLSearchParams();
+    if (range.from) params.set('from', range.from);
+    if (range.to)   params.set('to', range.to);
+    const url = '/api/orders/accounts-summary' + (params.toString() ? '?' + params.toString() : '');
+    const res = await fetch(url, { headers: authHeaders() });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Failed');
+    renderAccountsSummary(data);
+  } catch (e) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">লোড করতে সমস্যা হয়েছে</div>';
+  }
+}
+
+function renderAccountsSummary(data) {
+  const { row1, row2, row3 } = data;
+  const fmt = n => '৳' + Number(n).toLocaleString('en-BD');
+  const remainClass = row3.remaining > 0 ? 'danger' : row3.remaining === 0 ? '' : 'info';
+
+  document.getElementById('accContent').innerHTML = `
+    <!-- Row 1: All Confirmed Orders -->
+    <div class="acc-section">
+      <div class="acc-section-header">
+        <div class="acc-section-icon green">✅</div>
+        <div>
+          <div class="acc-section-title">সব Confirmed Orders</div>
+          <div class="acc-section-sub">সকল confirmed order এর সারসংক্ষেপ</div>
+        </div>
+      </div>
+      <div class="acc-grid">
+        <div class="acc-card green-border">
+          <div class="acc-card-label">মোট Amount</div>
+          <div class="acc-card-value">${fmt(row1.totalAmount)}</div>
+        </div>
+        <div class="acc-card orange-border">
+          <div class="acc-card-label">Delivery Charge</div>
+          <div class="acc-card-value warn">${fmt(row1.deliveryCharge)}</div>
+        </div>
+        <div class="acc-card green-border">
+          <div class="acc-card-label">Total - Delivery</div>
+          <div class="acc-card-value">${fmt(row1.netAmount)}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Confirmed + Delivery Pending -->
+    <div class="acc-section">
+      <div class="acc-section-header">
+        <div class="acc-section-icon orange">📦</div>
+        <div>
+          <div class="acc-section-title">Confirmed + Delivery Pending</div>
+          <div class="acc-section-sub">Confirmed কিন্তু এখনো deliver হয়নি</div>
+        </div>
+      </div>
+      <div class="acc-grid">
+        <div class="acc-card orange-border">
+          <div class="acc-card-label">মোট Amount</div>
+          <div class="acc-card-value warn">${fmt(row2.totalAmount)}</div>
+        </div>
+        <div class="acc-card orange-border">
+          <div class="acc-card-label">Delivery Charge</div>
+          <div class="acc-card-value warn">${fmt(row2.deliveryCharge)}</div>
+        </div>
+        <div class="acc-card orange-border">
+          <div class="acc-card-label">Total - Delivery</div>
+          <div class="acc-card-value warn">${fmt(row2.netAmount)}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Payment Summary -->
+    <div class="acc-section">
+      <div class="acc-section-header">
+        <div class="acc-section-icon blue">💰</div>
+        <div>
+          <div class="acc-section-title">Payment Summary</div>
+          <div class="acc-section-sub">মোট receive ও বাকি হিসাব</div>
+        </div>
+      </div>
+      <div class="acc-grid two-col">
+        <div class="acc-card blue-border">
+          <div class="acc-card-label">মোট Payment Received</div>
+          <div class="acc-card-value info">${fmt(row3.totalReceived)}</div>
+        </div>
+        <div class="acc-card red-border">
+          <div class="acc-card-label">বাকি আছে</div>
+          <div class="acc-card-value ${remainClass}">${fmt(row3.remaining)}</div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 // ─── SETTINGS ───

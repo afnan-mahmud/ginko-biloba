@@ -43,7 +43,12 @@ const orderSchema = new mongoose.Schema({
     consignment_id: String,
     tracking_code: String,
     status: { type: String, default: null },
-    sentAt: Date
+    delivery_status: { type: String, default: null },
+    delivery_fee: { type: Number, default: null },
+    statusUpdatedAt: Date,
+    sentAt: Date,
+    payment_received: { type: Boolean, default: false },
+    payment_received_at: { type: Date, default: null }
   },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
@@ -61,7 +66,22 @@ const adminSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+// Payment (Steadfast daily payout) Model
+const paymentSchema = new mongoose.Schema({
+  date: { type: String, required: true },       // 'YYYY-MM-DD'
+  amount: { type: Number, required: true },
+  note: { type: String, default: '' },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+paymentSchema.pre('save', function (next) {
+  this.updatedAt = new Date();
+  next();
+});
+
 const Order = mongoose.model('Order', orderSchema);
 const Admin = mongoose.model('Admin', adminSchema);
+const Payment = mongoose.model('Payment', paymentSchema);
 
-module.exports = { Order, Admin };
+module.exports = { Order, Admin, Payment };
