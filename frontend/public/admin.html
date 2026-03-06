@@ -225,6 +225,54 @@
     .detail-label { color: var(--text-soft); font-weight: 500; min-width: 130px; }
     .detail-value { font-weight: 600; text-align: right; }
 
+    /* ─── DATE FILTER BAR ─── */
+    .date-filter-bar {
+      background: var(--white); border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 20px;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+      box-shadow: var(--shadow);
+    }
+    .date-filter-label {
+      font-size: 12px; font-weight: 600; color: var(--text-soft);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px;
+    }
+    .date-filter-btn {
+      padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+      font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+      background: white; color: var(--text-soft); transition: all 0.15s;
+    }
+    .date-filter-btn.active { background: var(--green); color: white; border-color: var(--green); }
+    .date-filter-btn:hover:not(.active) { border-color: var(--green); color: var(--green); }
+    .date-range-inputs {
+      display: none; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .date-range-inputs.visible { display: flex; }
+    .date-range-inputs input[type="date"] {
+      padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 13px; outline: none; cursor: pointer;
+      color: var(--text);
+    }
+    .date-range-inputs input[type="date"]:focus { border-color: var(--green); }
+    .date-range-sep { font-size: 13px; color: var(--text-soft); }
+    .dash-period-label {
+      font-size: 13px; color: var(--text-soft); margin-left: auto;
+      font-style: italic;
+    }
+
+    /* ─── DASHBOARD STATS SUMMARY ROW ─── */
+    .dash-summary {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
+    }
+    .dash-summary-title { font-size: 16px; font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .date-filter-bar { padding: 12px; gap: 6px; }
+      .date-filter-btn { padding: 6px 12px; font-size: 12px; }
+      .date-range-inputs input[type="date"] { font-size: 12px; padding: 6px 10px; }
+      .dash-period-label { margin-left: 0; width: 100%; }
+    }
+
     /* Change password form */
     .settings-card {
       background: var(--white); border-radius: 12px; padding: 28px;
@@ -245,9 +293,161 @@
       .nav-item { justify-content: center; padding: 12px; }
       .main { margin-left: 60px; padding: 20px 16px; }
     }
+
+    /* ─── MOBILE NAV (bottom tabs) ─── */
+    .mobile-header {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #1a3a26; color: white;
+      padding: 14px 16px;
+      align-items: center; justify-content: space-between;
+      z-index: 300;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .mobile-header-logo { font-size: 17px; font-weight: 700; }
+    .mobile-header-logo span { color: var(--accent); }
+    .mobile-header-right { display: flex; align-items: center; gap: 10px; }
+    .mobile-admin-name { font-size: 12px; opacity: 0.7; }
+
+    .mobile-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #1a3a26;
+      z-index: 300;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
+    }
+    .mobile-nav-inner {
+      display: flex; justify-content: space-around;
+    }
+    .mobile-nav-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px 4px 12px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.55);
+      font-size: 10px; font-weight: 600;
+      gap: 3px;
+      transition: color 0.15s;
+      border-top: 3px solid transparent;
+    }
+    .mobile-nav-item .mn-icon { font-size: 20px; }
+    .mobile-nav-item.active { color: white; border-top-color: var(--accent); }
+
+    /* ─── MOBILE ORDERS CARDS ─── */
+    .order-cards { display: none; flex-direction: column; gap: 12px; padding: 0; }
+    .order-card {
+      background: var(--white); border-radius: 12px;
+      box-shadow: var(--shadow); padding: 16px;
+      border-left: 4px solid var(--border);
+    }
+    .order-card.status-pending { border-left-color: #f57c00; }
+    .order-card.status-confirmed { border-left-color: var(--green); }
+    .order-card.status-cancelled { border-left-color: var(--red); }
+    .oc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .oc-id { font-weight: 700; font-size: 13px; color: var(--green-dark); text-decoration: underline; cursor: pointer; }
+    .oc-date { font-size: 11px; color: var(--text-soft); }
+    .oc-name { font-weight: 600; font-size: 15px; }
+    .oc-phone { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+    .oc-district { font-size: 12px; color: var(--text-soft); }
+    .oc-products { font-size: 13px; margin: 8px 0; color: var(--text); line-height: 1.5; }
+    .oc-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
+    .oc-total { font-size: 18px; font-weight: 700; color: var(--green-dark); }
+    .oc-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .oc-actions .action-select { font-size: 13px; padding: 7px 10px; }
+    .oc-sf { display: flex; align-items: center; }
+
+    @media (max-width: 640px) {
+      /* Show mobile elements */
+      .mobile-header { display: flex; }
+      .mobile-nav { display: block; }
+
+      /* Hide desktop elements */
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 76px 12px 80px;
+      }
+
+      /* Topbar compact */
+      .topbar { margin-bottom: 16px; }
+      .page-title { font-size: 18px; }
+      .topbar-right { display: none; }
+
+      /* Stats grid 2 columns */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+      .stat-card { padding: 14px 12px; gap: 10px; }
+      .stat-icon { width: 38px; height: 38px; font-size: 18px; }
+      .stat-value { font-size: 20px; }
+
+      /* Filters stacked */
+      .filters { padding: 12px; gap: 8px; margin-bottom: 12px; }
+      .filter-btn { padding: 6px 12px; font-size: 12px; }
+      .search-input { min-width: unset; width: 100%; order: 5; }
+      .refresh-btn { font-size: 12px; padding: 7px 12px; }
+
+      /* Hide desktop table, show cards */
+      .table-wrap { display: none; }
+      .order-cards { display: flex; }
+
+      /* Pagination inside card view */
+      .mobile-pagination {
+        display: flex; align-items: center;
+        justify-content: space-between;
+        padding: 8px 0; margin-top: 4px;
+        font-size: 13px; color: var(--text-soft);
+      }
+      .mobile-pagination .page-btns { display: flex; gap: 4px; }
+      .mobile-pagination .page-btn { width: 32px; height: 32px; font-size: 12px; }
+
+      /* Modal full screen on mobile */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal {
+        border-radius: 20px 20px 0 0;
+        max-height: 85vh;
+        width: 100%;
+      }
+      .detail-label { min-width: 100px; font-size: 13px; }
+      .detail-value { font-size: 13px; }
+
+      /* Toast on mobile */
+      .toast { bottom: 80px; right: 12px; left: 12px; text-align: center; }
+
+      /* Settings card full width */
+      .settings-card { max-width: 100%; }
+
+      /* Recent orders table on dashboard also scrollable */
+      #recentOrdersWrap { overflow-x: auto; }
+    }
   </style>
 </head>
 <body>
+
+<!-- MOBILE HEADER -->
+<header class="mobile-header">
+  <div class="mobile-header-logo">Sh<span>u</span>khi Life</div>
+  <div class="mobile-header-right">
+    <span class="mobile-admin-name" id="mobileAdminName"></span>
+    <button onclick="logout()" style="background:rgba(255,255,255,0.15);border:none;color:white;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;">Logout</button>
+  </div>
+</header>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="mobile-nav-item active" id="mn-dashboard" onclick="showPage('dashboard')">
+      <span class="mn-icon">📊</span>
+      <span>Dashboard</span>
+    </div>
+    <div class="mobile-nav-item" id="mn-orders" onclick="showPage('orders')">
+      <span class="mn-icon">📦</span>
+      <span>Orders</span>
+    </div>
+    <div class="mobile-nav-item" id="mn-settings" onclick="showPage('settings')">
+      <span class="mn-icon">⚙️</span>
+      <span>Settings</span>
+    </div>
+  </div>
+</nav>
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
@@ -256,13 +456,13 @@
     <div class="sidebar-logo-sub">Admin Panel</div>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-item active" onclick="showPage('dashboard')">
+    <div class="nav-item active" id="snav-dashboard" onclick="showPage('dashboard')">
       <span class="nav-icon">📊</span><span>Dashboard</span>
     </div>
-    <div class="nav-item" onclick="showPage('orders')">
+    <div class="nav-item" id="snav-orders" onclick="showPage('orders')">
       <span class="nav-icon">📦</span><span>Orders</span>
     </div>
-    <div class="nav-item" onclick="showPage('settings')">
+    <div class="nav-item" id="snav-settings" onclick="showPage('settings')">
       <span class="nav-icon">⚙️</span><span>Settings</span>
     </div>
   </nav>
@@ -280,12 +480,28 @@
     <div class="topbar">
       <div>
         <div class="page-title">Dashboard</div>
-        <div class="page-sub">Welcome back!</div>
+        <div class="page-sub" id="dashSub">Welcome back!</div>
       </div>
       <div class="topbar-right">
         <div class="admin-badge" id="adminBadge">👤 Admin</div>
       </div>
     </div>
+
+    <!-- DATE FILTER -->
+    <div class="date-filter-bar">
+      <span class="date-filter-label">📅 Filter:</span>
+      <button class="date-filter-btn active" id="df-all" onclick="setDateFilter('all', this)">All Time</button>
+      <button class="date-filter-btn" id="df-today" onclick="setDateFilter('today', this)">Today</button>
+      <button class="date-filter-btn" id="df-yesterday" onclick="setDateFilter('yesterday', this)">Yesterday</button>
+      <button class="date-filter-btn" id="df-custom" onclick="setDateFilter('custom', this)">📅 Custom</button>
+      <div class="date-range-inputs" id="dateRangeInputs">
+        <input type="date" id="dateFrom" onchange="applyCustomDateFilter()" />
+        <span class="date-range-sep">→</span>
+        <input type="date" id="dateTo" onchange="applyCustomDateFilter()" />
+      </div>
+      <span class="dash-period-label" id="dashPeriodLabel"></span>
+    </div>
+
     <div class="stats-grid" id="statsGrid">
       <div class="stat-card"><div class="stat-icon total">📋</div><div><div class="stat-value" id="s-total">—</div><div class="stat-label">Total Orders</div></div></div>
       <div class="stat-card"><div class="stat-icon pending">⏳</div><div><div class="stat-value" id="s-pending">—</div><div class="stat-label">Pending</div></div></div>
@@ -295,7 +511,9 @@
     </div>
 
     <!-- Recent orders table on dashboard -->
-    <div style="font-size:16px;font-weight:700;margin-bottom:14px">Recent Orders</div>
+    <div class="dash-summary">
+      <div class="dash-summary-title">Orders <span id="recentOrdersCount" style="font-size:13px;color:var(--text-soft);font-weight:400"></span></div>
+    </div>
     <div class="table-wrap" id="recentOrdersWrap">
       <table class="orders-table" id="recentOrdersTable">
         <thead><tr>
@@ -339,6 +557,15 @@
         <span id="paginationInfo"></span>
         <div class="page-btns" id="paginationBtns"></div>
       </div>
+    </div>
+
+    <!-- MOBILE CARD VIEW -->
+    <div class="order-cards" id="orderCardsContainer">
+      <div style="text-align:center;padding:32px;color:var(--text-soft)">Loading...</div>
+    </div>
+    <div class="mobile-pagination" id="mobilePagination" style="display:none">
+      <span id="mobilePaginationInfo"></span>
+      <div class="page-btns" id="mobilePaginationBtns"></div>
     </div>
   </div>
 
@@ -388,6 +615,7 @@ if (!TOKEN) window.location.href = '/login';
 const adminUser = localStorage.getItem('sl_admin_user') || 'Admin';
 document.getElementById('adminBadge').textContent = '👤 ' + adminUser;
 document.getElementById('adminName').textContent = adminUser;
+document.getElementById('mobileAdminName').textContent = adminUser;
 
 let allOrders = [];
 let filteredOrders = [];
@@ -403,8 +631,14 @@ function authHeaders() {
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
+  // Sidebar nav
+  const snavEl = document.getElementById('snav-' + name);
+  if (snavEl) snavEl.classList.add('active');
+  // Mobile bottom nav
+  const mnEl = document.getElementById('mn-' + name);
+  if (mnEl) mnEl.classList.add('active');
   if (name === 'dashboard') loadDashboard();
   if (name === 'orders') {
     document.getElementById('searchInput').value = '';
@@ -413,34 +647,121 @@ function showPage(name) {
 }
 
 // ─── DASHBOARD ───
+let dashboardOrders = [];
+let currentDateFilter = 'all';
+
 async function loadDashboard() {
   try {
-    const [statsRes, ordersRes] = await Promise.all([
-      fetch('/api/orders/stats', { headers: authHeaders() }),
-      fetch('/api/orders?limit=5', { headers: authHeaders() })
-    ]);
-    const { stats } = await statsRes.json();
-    const { orders } = await ordersRes.json();
-
-    document.getElementById('s-total').textContent = stats.total;
-    document.getElementById('s-pending').textContent = stats.pending;
-    document.getElementById('s-confirmed').textContent = stats.confirmed;
-    document.getElementById('s-cancelled').textContent = stats.cancelled;
-    document.getElementById('s-revenue').textContent = '৳' + stats.revenue.toLocaleString();
-
-    const tbody = document.getElementById('recentOrdersBody');
-    if (!orders.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#999">No orders yet</td></tr>'; return; }
-    tbody.innerHTML = orders.map(o => `
-      <tr>
-        <td><div class="order-id">${o.orderId}</div></td>
-        <td><div class="customer-name">${o.customer.name}</div><div class="customer-phone">${o.customer.phone}</div></td>
-        <td style="font-size:13px">${o.products.map(p => p.name).join(', ')}</td>
-        <td class="price-cell">৳${o.total.toLocaleString()}</td>
-        <td><span class="status-badge ${o.status}">${statusLabel(o.status)}</span></td>
-        <td class="date-cell">${formatDate(o.createdAt)}</td>
-      </tr>
-    `).join('');
+    const res = await fetch('/api/orders?limit=2000', { headers: authHeaders() });
+    const data = await res.json();
+    dashboardOrders = data.orders || [];
+    applyDashboardFilter();
   } catch (e) { console.error(e); }
+}
+
+function setDateFilter(type, btn) {
+  currentDateFilter = type;
+  document.querySelectorAll('.date-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const rangeEl = document.getElementById('dateRangeInputs');
+  if (type === 'custom') {
+    rangeEl.classList.add('visible');
+    // Set defaults: today
+    const today = toLocalDateStr(new Date());
+    if (!document.getElementById('dateFrom').value) document.getElementById('dateFrom').value = today;
+    if (!document.getElementById('dateTo').value) document.getElementById('dateTo').value = today;
+    applyDashboardFilter();
+  } else {
+    rangeEl.classList.remove('visible');
+    applyDashboardFilter();
+  }
+}
+
+function applyCustomDateFilter() {
+  if (currentDateFilter === 'custom') applyDashboardFilter();
+}
+
+function toLocalDateStr(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function getDateRange() {
+  const now = new Date();
+  if (currentDateFilter === 'today') {
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+    const end   = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+    return { start, end, label: 'Today — ' + start.toLocaleDateString('en-BD', { day:'2-digit', month:'short', year:'numeric' }) };
+  }
+  if (currentDateFilter === 'yesterday') {
+    const y = new Date(now); y.setDate(y.getDate() - 1);
+    const start = new Date(y.getFullYear(), y.getMonth(), y.getDate(), 0, 0, 0);
+    const end   = new Date(y.getFullYear(), y.getMonth(), y.getDate(), 23, 59, 59, 999);
+    return { start, end, label: 'Yesterday — ' + start.toLocaleDateString('en-BD', { day:'2-digit', month:'short', year:'numeric' }) };
+  }
+  if (currentDateFilter === 'custom') {
+    const from = document.getElementById('dateFrom').value;
+    const to   = document.getElementById('dateTo').value;
+    if (!from || !to) return null;
+    const start = new Date(from + 'T00:00:00');
+    const end   = new Date(to   + 'T23:59:59');
+    const fmt = d => new Date(d).toLocaleDateString('en-BD', { day:'2-digit', month:'short' });
+    return { start, end, label: fmt(from) + ' → ' + fmt(to) };
+  }
+  return null; // all time
+}
+
+function applyDashboardFilter() {
+  const range = getDateRange();
+  let orders = dashboardOrders;
+
+  if (range) {
+    orders = dashboardOrders.filter(o => {
+      const d = new Date(o.createdAt);
+      return d >= range.start && d <= range.end;
+    });
+  }
+
+  // Update period label
+  document.getElementById('dashPeriodLabel').textContent = range ? range.label : '';
+
+  // Compute stats
+  const stats = {
+    total: orders.length,
+    pending: orders.filter(o => o.status === 'pending').length,
+    confirmed: orders.filter(o => o.status === 'confirmed').length,
+    cancelled: orders.filter(o => o.status === 'cancelled').length,
+    revenue: orders.filter(o => o.status === 'confirmed').reduce((s, o) => s + (o.total || 0), 0)
+  };
+
+  document.getElementById('s-total').textContent = stats.total;
+  document.getElementById('s-pending').textContent = stats.pending;
+  document.getElementById('s-confirmed').textContent = stats.confirmed;
+  document.getElementById('s-cancelled').textContent = stats.cancelled;
+  document.getElementById('s-revenue').textContent = '৳' + stats.revenue.toLocaleString();
+
+  // Recent orders table (latest 20 of filtered)
+  const recent = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 20);
+  const countEl = document.getElementById('recentOrdersCount');
+  countEl.textContent = orders.length ? `(${orders.length} total)` : '';
+
+  const tbody = document.getElementById('recentOrdersBody');
+  if (!recent.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#999">কোনো অর্ডার নেই</td></tr>';
+    return;
+  }
+  tbody.innerHTML = recent.map(o => `
+    <tr>
+      <td><div class="order-id" style="cursor:pointer;text-decoration:underline" onclick="showOrderDetail('${o._id}')">${o.orderId}</div></td>
+      <td><div class="customer-name">${o.customer.name}</div><div class="customer-phone">${o.customer.phone}</div></td>
+      <td style="font-size:13px">${o.products.map(p => p.name).join(', ')}</td>
+      <td class="price-cell">৳${o.total.toLocaleString()}</td>
+      <td><span class="status-badge ${o.status}">${statusLabel(o.status)}</span></td>
+      <td class="date-cell">${formatDate(o.createdAt)}</td>
+    </tr>
+  `).join('');
 }
 
 // ─── ORDERS ───
@@ -483,63 +804,18 @@ function applyFilter() {
   renderOrders();
 }
 
-function renderOrders() {
-  const tbody = document.getElementById('ordersTableBody');
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const pageOrders = filteredOrders.slice(start, start + PAGE_SIZE);
-
-  if (!pageOrders.length) {
-    tbody.innerHTML = `<tr><td colspan="9"><div class="table-empty"><div class="empty-icon">📭</div>No orders found</div></td></tr>`;
-    document.getElementById('paginationInfo').textContent = '';
-    document.getElementById('paginationBtns').innerHTML = '';
-    return;
+function buildSfCell(o) {
+  if (o.steadfast?.consignment_id) {
+    return `<span class="sf-sent">✓ Sent</span>
+      <div class="sf-tracking">ID: ${o.steadfast.consignment_id}</div>
+      ${o.steadfast.tracking_code ? `<div class="sf-tracking">Track: ${o.steadfast.tracking_code}</div>` : ''}`;
+  } else if (o.status === 'confirmed') {
+    return `<button class="sf-btn send" id="sf-${o._id}" onclick="sendToSteadfast('${o._id}')">📦 Send</button>`;
   }
+  return `<button class="sf-btn send" disabled title="Confirm order first">📦 Send</button>`;
+}
 
-  tbody.innerHTML = pageOrders.map(o => {
-    let sfCell = '';
-    if (o.steadfast?.consignment_id) {
-      sfCell = `<span class="sf-sent">✓ Sent</span>
-        <div class="sf-tracking">ID: ${o.steadfast.consignment_id}</div>
-        ${o.steadfast.tracking_code ? `<div class="sf-tracking">Track: ${o.steadfast.tracking_code}</div>` : ''}`;
-    } else if (o.status === 'confirmed') {
-      sfCell = `<button class="sf-btn send" id="sf-${o._id}" onclick="sendToSteadfast('${o._id}')">📦 Send</button>`;
-    } else {
-      sfCell = `<button class="sf-btn send" disabled title="Confirm order first">📦 Send</button>`;
-    }
-    return `<tr>
-      <td>
-        <div class="order-id" style="cursor:pointer;text-decoration:underline" onclick="showOrderDetail('${o._id}')">${o.orderId}</div>
-      </td>
-      <td>
-        <div class="customer-name">${o.customer.name}</div>
-        <div class="customer-phone">${o.customer.phone}</div>
-        <div class="customer-district">${o.customer.district || ''}</div>
-      </td>
-      <td style="font-size:13px;max-width:200px">${o.products.map(p => `${p.name} x${p.quantity}`).join('<br>')}</td>
-      <td class="price-cell">৳${o.total.toLocaleString()}</td>
-      <td>
-        ${o.metaData?.purchaseEventSent
-          ? '<span class="meta-sent">✓ Sent</span>'
-          : '<span class="meta-pending">Pending</span>'}
-      </td>
-      <td><span class="status-badge ${o.status}">${statusLabel(o.status)}</span></td>
-      <td class="date-cell">${formatDate(o.createdAt)}</td>
-      <td>
-        <select class="action-select" onchange="updateStatus('${o._id}', this)" data-current="${o.status}">
-          <option value="pending" ${o.status==='pending'?'selected':''}>⏳ Pending</option>
-          <option value="confirmed" ${o.status==='confirmed'?'selected':''}>✅ Confirmed</option>
-          <option value="cancelled" ${o.status==='cancelled'?'selected':''}>❌ Cancelled</option>
-        </select>
-      </td>
-      <td>${sfCell}</td>
-    </tr>`;
-  }).join('');
-
-  // Pagination
-  const totalPages = Math.ceil(filteredOrders.length / PAGE_SIZE);
-  document.getElementById('paginationInfo').textContent =
-    `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filteredOrders.length)} of ${filteredOrders.length}`;
-
+function buildPaginationBtns(totalPages, containerId) {
   let btns = '';
   btns += `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
   for (let i = 1; i <= totalPages; i++) {
@@ -548,7 +824,92 @@ function renderOrders() {
     }
   }
   btns += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>`;
-  document.getElementById('paginationBtns').innerHTML = btns;
+  document.getElementById(containerId).innerHTML = btns;
+}
+
+function renderOrders() {
+  const tbody = document.getElementById('ordersTableBody');
+  const cardsContainer = document.getElementById('orderCardsContainer');
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageOrders = filteredOrders.slice(start, start + PAGE_SIZE);
+  const totalPages = Math.ceil(filteredOrders.length / PAGE_SIZE);
+  const infoText = filteredOrders.length
+    ? `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filteredOrders.length)} of ${filteredOrders.length}`
+    : '';
+
+  if (!pageOrders.length) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="table-empty"><div class="empty-icon">📭</div>No orders found</div></td></tr>`;
+    cardsContainer.innerHTML = `<div style="text-align:center;padding:48px 20px;color:var(--text-soft)"><div style="font-size:40px;margin-bottom:10px">📭</div>No orders found</div>`;
+    document.getElementById('paginationInfo').textContent = '';
+    document.getElementById('paginationBtns').innerHTML = '';
+    document.getElementById('mobilePagination').style.display = 'none';
+    return;
+  }
+
+  // ── Desktop table rows ──
+  tbody.innerHTML = pageOrders.map(o => `<tr>
+    <td>
+      <div class="order-id" style="cursor:pointer;text-decoration:underline" onclick="showOrderDetail('${o._id}')">${o.orderId}</div>
+    </td>
+    <td>
+      <div class="customer-name">${o.customer.name}</div>
+      <div class="customer-phone">${o.customer.phone}</div>
+      <div class="customer-district">${o.customer.district || ''}</div>
+    </td>
+    <td style="font-size:13px;max-width:200px">${o.products.map(p => `${p.name} x${p.quantity}`).join('<br>')}</td>
+    <td class="price-cell">৳${o.total.toLocaleString()}</td>
+    <td>${o.metaData?.purchaseEventSent ? '<span class="meta-sent">✓ Sent</span>' : '<span class="meta-pending">Pending</span>'}</td>
+    <td><span class="status-badge ${o.status}">${statusLabel(o.status)}</span></td>
+    <td class="date-cell">${formatDate(o.createdAt)}</td>
+    <td>
+      <select class="action-select" onchange="updateStatus('${o._id}', this)" data-current="${o.status}">
+        <option value="pending" ${o.status==='pending'?'selected':''}>⏳ Pending</option>
+        <option value="confirmed" ${o.status==='confirmed'?'selected':''}>✅ Confirmed</option>
+        <option value="cancelled" ${o.status==='cancelled'?'selected':''}>❌ Cancelled</option>
+      </select>
+    </td>
+    <td>${buildSfCell(o)}</td>
+  </tr>`).join('');
+
+  // ── Mobile cards ──
+  cardsContainer.innerHTML = pageOrders.map(o => `
+    <div class="order-card status-${o.status}">
+      <div class="oc-header">
+        <span class="oc-id" onclick="showOrderDetail('${o._id}')">${o.orderId}</span>
+        <span class="oc-date">${formatDate(o.createdAt)}</span>
+      </div>
+      <div class="oc-name">${o.customer.name}</div>
+      <div class="oc-phone">${o.customer.phone}</div>
+      ${o.customer.district ? `<div class="oc-district">📍 ${o.customer.district}</div>` : ''}
+      <div class="oc-products">${o.products.map(p => `${p.name} × ${p.quantity}`).join(' · ')}</div>
+      <div class="oc-footer">
+        <div class="oc-total">৳${o.total.toLocaleString()}</div>
+        <div class="oc-actions">
+          <span class="status-badge ${o.status}">${statusLabel(o.status)}</span>
+          <select class="action-select" onchange="updateStatus('${o._id}', this)" data-current="${o.status}">
+            <option value="pending" ${o.status==='pending'?'selected':''}>⏳ Pending</option>
+            <option value="confirmed" ${o.status==='confirmed'?'selected':''}>✅ Confirmed</option>
+            <option value="cancelled" ${o.status==='cancelled'?'selected':''}>❌ Cancelled</option>
+          </select>
+          <div class="oc-sf">${buildSfCell(o)}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // ── Desktop pagination ──
+  document.getElementById('paginationInfo').textContent = infoText;
+  buildPaginationBtns(totalPages, 'paginationBtns');
+
+  // ── Mobile pagination ──
+  const mobilePag = document.getElementById('mobilePagination');
+  if (totalPages > 1) {
+    mobilePag.style.display = 'flex';
+    document.getElementById('mobilePaginationInfo').textContent = infoText;
+    buildPaginationBtns(totalPages, 'mobilePaginationBtns');
+  } else {
+    mobilePag.style.display = 'none';
+  }
 }
 
 function goPage(p) {
@@ -635,7 +996,7 @@ async function sendToSteadfast(orderId) {
 
 // ─── ORDER DETAIL MODAL ───
 async function showOrderDetail(id) {
-  const order = allOrders.find(o => o._id === id);
+  const order = allOrders.find(o => o._id === id) || dashboardOrders.find(o => o._id === id);
   if (!order) return;
   const modal = document.getElementById('orderModal');
   const body = document.getElementById('modalBody');
