@@ -1297,7 +1297,15 @@ function getFbp() {
 }
 function getFbc() {
   const match = document.cookie.match(/_fbc=([^;]+)/);
-  if (match) return match[1];
+  if (match) {
+    const fbc = match[1];
+    const parts = fbc.split('.');
+    if (parts.length >= 3) {
+      const cookieTs = parseInt(parts[2], 10);
+      const ageMs = Date.now() - cookieTs;
+      if (ageMs < 90 * 24 * 60 * 60 * 1000) return fbc;
+    }
+  }
   const urlParams = new URLSearchParams(window.location.search);
   const fbclid = urlParams.get('fbclid');
   return fbclid ? `fb.1.${Date.now()}.${fbclid}` : null;
