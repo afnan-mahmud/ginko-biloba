@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shukhi Life – Ginko Biloba ব্রেইনের ফুড সাপ্লিমেন্ট</title>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vs9dldbcxy");
+  </script>
 
   <!-- Meta Pixel Base Code -->
   <script>
@@ -717,6 +725,32 @@
     }
     .form-select:focus { border-color: var(--green); }
 
+    /* Location picker */
+    .location-options { display: flex; gap: 12px; }
+    .location-option {
+      flex: 1; display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); cursor: pointer;
+      background: #fafffe; transition: all 0.2s;
+      user-select: none;
+    }
+    .location-option:hover { border-color: var(--green); background: #f0faf4; }
+    .location-option.selected { border-color: var(--green); background: #e8f5ee; }
+    .loc-icon { font-size: 22px; flex-shrink: 0; }
+    .loc-info { flex: 1; }
+    .loc-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .loc-charge { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+    .loc-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--green); color: white;
+      display: none; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .location-option.selected .loc-check { display: flex; }
+    @media (max-width: 420px) {
+      .location-options { flex-direction: column; }
+    }
+
     /* Product selector */
     .product-options { display: flex; flex-direction: column; gap: 12px; }
     .product-option {
@@ -927,11 +961,10 @@
         <span class="hero-badge">✨ বাংলাদেশে #১ ব্রেইন সাপ্লিমেন্ট</span>
         <span class="hero-badge-outline">🏥 ডাক্তার অনুমোদিত</span>
       </div>
-      <h1>মাথা ঠান্ডা রাখুন, মনোযোগ ধরে রাখুন — <em>Ginko Biloba</em> দিয়ে</h1>
+      <h1>ভুলে যাওয়ার সমস্যা থেকে মুক্তি পান, মনোযোগ ধরে রাখুন — <em>Ginko Biloba</em> দিয়ে</h1>
       <p class="hero-sub">
-        পড়তে বসলে মাথায় পড়া ঢোকে না? কাজের মাঝে মনোযোগ হারিয়ে ফেলেন? ছোট ছোট জিনিস ভুলে যাচ্ছেন?<br>
-        Ginko Biloba আপনার ব্রেইনে রক্ত চলাচল বাড়ায় — যার ফলে মাথা পরিষ্কার থাকে, পড়া-শুনা কিংবা কাজের প্রতি মনোযোগ বাড়ে।<br>
-        <strong>⚡ এখনই নিন — অর্ডার দেওয়ার ১০ মিনিটের মধ্যেই কনফার্ম কল পাবেন!</strong>
+        ছোট ছোট জিনিস ভুলে যাচ্ছেন? পড়তে বসলে মাথায় পড়া ঢোকে না? কাজের মাঝে মনোযোগ হারিয়ে ফেলেন?<br>
+        Ginko Biloba আপনার ব্রেইনে রক্ত চলাচল বাড়ায় — যার ফলে নিজেকে আগের থেকে ভালো ফিল করা যায়, পড়া-শুনা কিংবা কাজের প্রতি মনোযোগ বাড়ে।<br>
       </p>
       <div class="hero-cta-wrap">
         <button class="btn-primary" id="heroOrderBtn" onclick="scrollToOrder()">🛒 এখনই অর্ডার করুন</button>
@@ -979,8 +1012,23 @@
   </div>
 </div>
 
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="section-inner">
+    <div class="guarantee-box">
+      <div class="guarantee-icon-wrap">🏅</div>
+      <div>
+        <h3 class="guarantee-title">কাজ না হলে পুরো টাকা ফেরত</h3>
+        <p class="guarantee-text">
+          আমরা জানি অনেকেই প্রথমবার কিনতে ভয় পান। তাই আমরা গ্যারান্টি দিচ্ছি — প্রোডাক্ট পেয়ে যদি মনে না হয় কাজে আসছে, ফেরত দিন। <strong>২ কার্যদিবসের মধ্যে</strong> আপনার পুরো টাকা ফিরিয়ে দেব। কোনো প্রশ্ন ছাড়াই।
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TRUST BAR -->
-<div class="trust-bar">
+<!-- <div class="trust-bar">
   <div class="trust-bar-inner">
     <div class="trust-item"><span class="trust-item-icon">🛡️</span>কাজ না হলে পুরো টাকা ফেরত</div>
     <div class="trust-item"><span class="trust-item-icon">🚚</span>ঘরে বসে হাতে ডেলিভারি পাবেন</div>
@@ -988,10 +1036,10 @@
     <div class="trust-item"><span class="trust-item-icon">🏥</span>বড় বড় ডাক্তাররা খাওয়ার পরামর্শ দিয়েছেন এবং বলেছেন ভালো</div>
     <div class="trust-item"><span class="trust-item-icon">🌿</span>সম্পূর্ণ প্রাকৃতিক উপাদান দিয়ে তৈরি</div>
   </div>
-</div>
+</div> -->
 
 <!-- BENEFITS -->
-<section class="section" style="background: var(--white);">
+<!-- <section class="section" style="background: var(--white);">
   <div class="section-inner">
     <div style="text-align:center"><span class="section-label">কেন Ginko Biloba?</span></div>
     <h2 class="section-title">যে সমস্যা থেকে মুক্তি পাবেন</h2>
@@ -1019,10 +1067,10 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- INGREDIENTS -->
-<section class="ingredients-section">
+<!-- <section class="ingredients-section">
   <div class="ingredient-wrap">
     <div class="ingredient-text-side">
       <span class="section-label">মূল উপাদান</span>
@@ -1083,7 +1131,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- DOCTOR VIDEO -->
 <section class="doctor-section">
@@ -1101,7 +1149,7 @@
 </section>
 
 <!-- REVIEWS -->
-<section class="reviews-section">
+<!-- <section class="reviews-section">
   <div class="section-inner">
     <div style="text-align:center"><span class="section-label">গ্রাহকদের কথা</span></div>
     <h2 class="section-title" style="margin-bottom:20px">তারা নিজেরাই বলছেন</h2>
@@ -1152,22 +1200,7 @@
       </div>
     </div>
   </div>
-</section>
-
-<!-- GUARANTEE -->
-<section class="guarantee-section">
-  <div class="section-inner">
-    <div class="guarantee-box">
-      <div class="guarantee-icon-wrap">🏅</div>
-      <div>
-        <h3 class="guarantee-title">কাজ না হলে পুরো টাকা ফেরত</h3>
-        <p class="guarantee-text">
-          আমরা জানি অনেকেই প্রথমবার কিনতে ভয় পান। তাই আমরা গ্যারান্টি দিচ্ছি — প্রোডাক্ট পেয়ে যদি মনে না হয় কাজে আসছে, ফেরত দিন। <strong>২ কার্যদিবসের মধ্যে</strong> আপনার পুরো টাকা ফিরিয়ে দেব। কোনো প্রশ্ন ছাড়াই।
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+</section> -->
 
 <!-- ORDER FORM -->
 <section class="order-section" id="orderSection">
@@ -1220,22 +1253,26 @@
           <input type="tel" id="custPhone" class="form-input" placeholder="01XXXXXXXXX" autocomplete="tel" />
         </div>
         <div class="form-group">
-          <label class="form-label" for="custDistrict">আপনি কোন জেলায়? <span>*</span></label>
-          <select id="custDistrict" class="form-select" onchange="updateShipping()">
-            <option value="">জেলা বেছে নিন</option>
-            <option value="Dhaka">ঢাকা (শিপিং: ৳৮০)</option>
-            <option value="Chittagong">চট্টগ্রাম (শিপিং: ৳১৩০)</option>
-            <option value="Sylhet">সিলেট (শিপিং: ৳১৩০)</option>
-            <option value="Rajshahi">রাজশাহী (শিপিং: ৳১৩০)</option>
-            <option value="Khulna">খুলনা (শিপিং: ৳১৩০)</option>
-            <option value="Barisal">বরিশাল (শিপিং: ৳১৩০)</option>
-            <option value="Rangpur">রংপুর (শিপিং: ৳১৩০)</option>
-            <option value="Mymensingh">ময়মনসিংহ (শিপিং: ৳১৩০)</option>
-            <option value="Comilla">কুমিল্লা (শিপিং: ৳১৩০)</option>
-            <option value="Narayanganj">নারায়ণগঞ্জ (শিপিং: ৳৮০)</option>
-            <option value="Gazipur">গাজীপুর (শিপিং: ৳৮০)</option>
-            <option value="Other">অন্যান্য (শিপিং: ৳১৩০)</option>
-          </select>
+          <label class="form-label">আপনার ঠিকানা কোথায়? <span>*</span></label>
+          <input type="hidden" id="custDistrict" value="" />
+          <div class="location-options">
+            <div class="location-option" id="loc-dhaka" onclick="selectLocation('dhaka')">
+              <div class="loc-icon">🏙️</div>
+              <div class="loc-info">
+                <div class="loc-title">ঢাকার ভিতরে</div>
+                <div class="loc-charge">ডেলিভারি চার্জ: <strong>৳৮০</strong></div>
+              </div>
+              <div class="loc-check">✓</div>
+            </div>
+            <div class="location-option" id="loc-outside" onclick="selectLocation('outside')">
+              <div class="loc-icon">🗺️</div>
+              <div class="loc-info">
+                <div class="loc-title">ঢাকার বাইরে</div>
+                <div class="loc-charge">ডেলিভারি চার্জ: <strong>৳১৩০</strong></div>
+              </div>
+              <div class="loc-check">✓</div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="custAddress">পুরো ঠিকানা <span>*</span></label>
@@ -1286,7 +1323,7 @@
 <script>
 // ─── STATE ───
 const PRICES = { 'ginko-30': 790, 'ginko-60': 1250 };
-const DHAKA_DISTRICTS = ['Dhaka', 'Narayanganj', 'Gazipur'];
+const DHAKA_DISTRICTS = ['Dhaka', 'Narayanganj', 'Gazipur', 'Manikganj', 'Munshiganj', 'Narsingdi', 'Faridpur', 'Gopalganj', 'Kishoreganj', 'Madaripur', 'Rajbari', 'Shariatpur', 'Tangail'];
 let selectedProduct = 'ginko-30';
 let shippingCharge = 0;
 
@@ -1386,6 +1423,20 @@ function updateProduct(radio) {
   updateSummary();
 }
 
+function selectLocation(type) {
+  document.querySelectorAll('.location-option').forEach(el => el.classList.remove('selected'));
+  if (type === 'dhaka') {
+    document.getElementById('loc-dhaka').classList.add('selected');
+    document.getElementById('custDistrict').value = 'Dhaka';
+    shippingCharge = 80;
+  } else {
+    document.getElementById('loc-outside').classList.add('selected');
+    document.getElementById('custDistrict').value = 'Outside Dhaka';
+    shippingCharge = 130;
+  }
+  updateSummary();
+}
+
 function updateShipping() {
   const district = document.getElementById('custDistrict').value;
   shippingCharge = DHAKA_DISTRICTS.includes(district) ? 80 : (district ? 130 : 0);
@@ -1413,7 +1464,7 @@ async function placeOrder() {
 
   if (!name) { showError('আপনার নাম লিখুন'); return; }
   if (!phone || phone.length < 10) { showError('সঠিক মোবাইল নম্বর দিন'); return; }
-  if (!district) { showError('জেলা সিলেক্ট করুন'); return; }
+  if (!district) { showError('ঢাকার ভিতরে না বাইরে সিলেক্ট করুন'); return; }
   if (!address) { showError('সম্পূর্ণ ঠিকানা লিখুন'); return; }
 
   const btn = document.getElementById('placeOrderBtn');
