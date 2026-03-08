@@ -11,39 +11,8 @@ const PRODUCTS = {
   'ginko-60': { name: 'Ginko Biloba - ৬০ পিস (প্ল্যাটিনাম প্যাক)', price: 1250 }
 };
 
-// POST /api/orders/initiate-checkout
-// Called when user fills form and clicks "Order Korun" — sends InitiateCheckout to Meta
-router.post('/initiate-checkout', async (req, res) => {
-  try {
-    const { name, phone, address, district, products, fbp, fbc, eventSourceUrl, clientUserAgent, eventId } = req.body;
-    const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress;
-
-    await sendCapiEvent({
-      eventName: 'InitiateCheckout',
-      eventId,
-      userData: {
-        name, phone,
-        clientIpAddress: clientIp,
-        clientUserAgent,
-        fbp, fbc,
-        externalId: phone
-      },
-      customData: {
-        currency: 'BDT',
-        num_items: products?.reduce((a, p) => a + p.qty, 0) || 1
-      },
-      eventSourceUrl
-    });
-
-    res.json({ success: true });
-  } catch (err) {
-    console.error('InitiateCheckout error:', err);
-    res.status(500).json({ success: false });
-  }
-});
-
 // POST /api/orders/place
-// Called when user submits the order form — stores order + sends no Purchase yet
+// Called when user submits the order form — stores order, Lead fires from browser pixel
 router.post('/place', async (req, res) => {
   try {
     const {
@@ -73,7 +42,7 @@ router.post('/place', async (req, res) => {
       subtotalSum = 790;
     }
 
-    const shippingCharge = district && district.toLowerCase().includes('dhaka') ? 80 : 130;
+    const shippingCharge = district && district.toLowerCase() === 'dhaka' ? 80 : 130;
     const total = subtotalSum + shippingCharge;
 
     const externalId = crypto.randomUUID();
@@ -204,19 +173,20 @@ router.patch('/:id/status', authMiddleware, async (req, res) => {
     if (status === 'confirmed' && !order.metaData.purchaseEventSent) {
       const result = await sendCapiEvent({
         eventName: 'Purchase',
+        eventId: order.orderId,
         userData: {
-          name: order.customer.name,
           phone: order.customer.phone,
+          name: order.customer.name,
           clientIpAddress: order.metaData.clientIpAddress,
           clientUserAgent: order.metaData.clientUserAgent,
           fbp: order.metaData.fbp,
           fbc: order.metaData.fbc,
-          externalId: order.metaData.externalId,
-          eventSourceUrl: order.metaData.eventSourceUrl
+          externalId: order.metaData.externalId
         },
         customData: {
           currency: 'BDT',
           value: order.total,
+          content_type: 'product',
           order_id: order.orderId,
           contents: order.products.map(p => ({
             id: p.name,

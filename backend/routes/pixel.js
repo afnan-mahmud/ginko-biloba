@@ -3,12 +3,13 @@ const router = express.Router();
 const { sendCapiEvent } = require('../controllers/meta');
 
 // POST /api/pixel/event
-// Frontend sends browser events (PageView, ScrollDepth, AddToCart) here for CAPI deduplication
+// Frontend sends browser-side events here for CAPI deduplication
 router.post('/event', async (req, res) => {
   try {
     const {
       eventName,
       fbp, fbc,
+      phone, name,
       clientUserAgent,
       eventSourceUrl,
       customData,
@@ -17,7 +18,7 @@ router.post('/event', async (req, res) => {
 
     const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress;
 
-    const allowedEvents = ['PageView', 'ViewContent', 'AddToCart', 'InitiateCheckout', 'ScrollDepth50', 'ScrollDepth100'];
+    const allowedEvents = ['ViewContent', 'InitiateCheckout', 'Lead'];
     if (!allowedEvents.includes(eventName)) {
       return res.status(400).json({ success: false, message: 'Unknown event' });
     }
@@ -26,10 +27,13 @@ router.post('/event', async (req, res) => {
       eventName,
       eventId,
       userData: {
+        phone: phone || null,
+        name: name || null,
         clientIpAddress: clientIp,
         clientUserAgent,
         fbp,
-        fbc
+        fbc,
+        externalId: phone || null
       },
       customData: customData || {},
       eventSourceUrl

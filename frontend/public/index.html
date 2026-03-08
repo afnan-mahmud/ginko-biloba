@@ -949,7 +949,7 @@
   </div>
   <div class="header-right">
     <div class="header-phone">📞 01346-990556</div>
-    <button class="header-cta" onclick="scrollToOrder()">এখনই নিন</button>
+    <button class="header-cta" onclick="scrollToOrder()">এখনই অর্ডার করুন</button>
   </div>
 </header>
 
@@ -1318,7 +1318,7 @@
 </footer>
 
 <!-- STICKY CTA -->
-<div class="sticky-cta" onclick="scrollToOrder()">🛒 এখনই অর্ডার করুন — পেয়ে টাকা দিন</div>
+<div class="sticky-cta" onclick="scrollToOrder()">🛒 এখনই অর্ডার করুন — প্রোডাক্ট হাতে পেয়ে টাকা দিন</div>
 
 <script>
 // ─── STATE ───
@@ -1351,7 +1351,7 @@ function genEventId() {
   return 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2);
 }
 
-async function sendCapiEvent(eventName, customData = {}, eventId) {
+async function sendCapiEvent(eventName, customData = {}, eventId, userData = {}) {
   try {
     await fetch('/api/pixel/event', {
       method: 'POST',
@@ -1360,6 +1360,8 @@ async function sendCapiEvent(eventName, customData = {}, eventId) {
         eventName,
         fbp: getFbp(),
         fbc: getFbc(),
+        phone: userData.phone || null,
+        name: userData.name || null,
         clientUserAgent: navigator.userAgent,
         eventSourceUrl: window.location.href,
         customData,
@@ -1369,49 +1371,50 @@ async function sendCapiEvent(eventName, customData = {}, eventId) {
   } catch (e) { console.error('CAPI event error:', e); }
 }
 
-// ─── PAGE VIEW ───
+// ─── VIEW CONTENT (on page load) ───
 window.addEventListener('load', () => {
-  const evId = genEventId();
-  fbq('track', 'PageView', {}, { eventID: evId });
-  sendCapiEvent('PageView', {}, evId);
-});
-
-// ─── SCROLL DEPTH ───
-let scrollFired50 = false, scrollFired100 = false;
-window.addEventListener('scroll', () => {
-  const scrollPct = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
-  if (!scrollFired50 && scrollPct >= 50) {
-    scrollFired50 = true;
-    const evId = genEventId();
-    fbq('trackCustom', 'ScrollDepth50', { depth: 50 }, { eventID: evId });
-    sendCapiEvent('ScrollDepth50', { depth: 50 }, evId);
-  }
-  if (!scrollFired100 && scrollPct >= 99) {
-    scrollFired100 = true;
-    const evId = genEventId();
-    fbq('trackCustom', 'ScrollDepth100', { depth: 100 }, { eventID: evId });
-    sendCapiEvent('ScrollDepth100', { depth: 100 }, evId);
-  }
-});
-
-// ─── ADD TO CART ───
-function fireAddToCart() {
-  const evId = genEventId();
-  fbq('track', 'AddToCart', {
+  const vcId = genEventId();
+  fbq('track', 'ViewContent', {
     content_ids: [selectedProduct],
     content_type: 'product',
     value: PRICES[selectedProduct],
-    currency: 'BDT'
-  }, { eventID: evId });
-  sendCapiEvent('AddToCart', {
+    currency: 'BDT',
+    content_name: 'Ginko Biloba'
+  }, { eventID: vcId });
+  sendCapiEvent('ViewContent', {
     content_ids: [selectedProduct],
+    content_type: 'product',
     value: PRICES[selectedProduct],
-    currency: 'BDT'
-  }, evId);
-}
+    currency: 'BDT',
+    content_name: 'Ginko Biloba'
+  }, vcId);
+});
+
+// ─── INITIATE CHECKOUT (first form interaction) ───
+let icFired = false;
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#custName, #custPhone, #custAddress').forEach(el => {
+    el.addEventListener('focus', () => {
+      if (icFired) return;
+      icFired = true;
+      const evId = genEventId();
+      fbq('track', 'InitiateCheckout', {
+        content_ids: [selectedProduct],
+        content_type: 'product',
+        value: PRICES[selectedProduct],
+        currency: 'BDT'
+      }, { eventID: evId });
+      sendCapiEvent('InitiateCheckout', {
+        content_ids: [selectedProduct],
+        content_type: 'product',
+        value: PRICES[selectedProduct],
+        currency: 'BDT'
+      }, evId);
+    });
+  });
+});
 
 function scrollToOrder() {
-  fireAddToCart();
   document.getElementById('orderSection').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1431,7 +1434,7 @@ function selectLocation(type) {
     shippingCharge = 80;
   } else {
     document.getElementById('loc-outside').classList.add('selected');
-    document.getElementById('custDistrict').value = 'Outside Dhaka';
+    document.getElementById('custDistrict').value = 'Outside';
     shippingCharge = 130;
   }
   updateSummary();
@@ -1471,27 +1474,6 @@ async function placeOrder() {
   btn.disabled = true;
   btn.classList.add('loading');
 
-  const icEventId = genEventId();
-  fbq('track', 'InitiateCheckout', {
-    content_ids: [selectedProduct],
-    value: PRICES[selectedProduct] + shippingCharge,
-    currency: 'BDT',
-    num_items: 1
-  }, { eventID: icEventId });
-
-  await fetch('/api/orders/initiate-checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name, phone, address, district,
-      products: [{ id: selectedProduct, qty: 1 }],
-      fbp: getFbp(), fbc: getFbc(),
-      clientUserAgent: navigator.userAgent,
-      eventSourceUrl: window.location.href,
-      eventId: icEventId
-    })
-  }).catch(() => {});
-
   try {
     const res = await fetch('/api/orders/place', {
       method: 'POST',
@@ -1507,6 +1489,24 @@ async function placeOrder() {
     const data = await res.json();
 
     if (data.success) {
+      const totalValue = data.total || (PRICES[selectedProduct] + shippingCharge);
+
+      fbq('track', 'Lead', {
+        content_name: 'Order Placed',
+        content_ids: [selectedProduct],
+        content_type: 'product',
+        value: totalValue,
+        currency: 'BDT'
+      }, { eventID: data.orderId });
+
+      sendCapiEvent('Lead', {
+        content_name: 'Order Placed',
+        content_ids: [selectedProduct],
+        content_type: 'product',
+        value: totalValue,
+        currency: 'BDT'
+      }, data.orderId, { phone, name });
+
       document.getElementById('orderFormWrap').style.display = 'none';
       const successEl = document.getElementById('orderSuccess');
       successEl.style.display = 'block';

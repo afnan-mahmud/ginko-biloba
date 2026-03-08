@@ -52,7 +52,7 @@ async function sendCapiEvent({ eventName, eventTime, userData, customData, event
       }
     });
 
-    if (TEST_EVENT_CODE && process.env.NODE_ENV !== 'production') {
+    if (TEST_EVENT_CODE) {
       payload.test_event_code = TEST_EVENT_CODE;
     }
 
